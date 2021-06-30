@@ -4,6 +4,8 @@
     <title></title>
 </head>
 <body>
-
+<%
+    response.sendRedirect("/user/login");
+%>
 </body>
 </html>
