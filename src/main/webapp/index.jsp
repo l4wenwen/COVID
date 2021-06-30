@@ -5,7 +5,9 @@
 </head>
 <body>
 <%
-    response.sendRedirect("/user/login");
+    if (session.getAttribute("user") == null)
+        response.sendRedirect("/user/login");
 %>
+你好
 </body>
 </html>

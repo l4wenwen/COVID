@@ -15,8 +15,13 @@
     <label>用户名：<input type="text" name="account" /></label> <br />
     <label>密码：<input type="password" name="password" /></label> <br />
     <label>重复密码：<input type="password" name="repassword" /></label> <br />
+    <label>姓名：<input type="text" name="name" /></label> <br />
+    <label>性别：<input type="text" name="sex" /></label> <br />
+    <label>学院：<input type="text" name="college" /></label> <br />
+    <label>专业：<input type="text" name="major" /></label> <br />
     <input type="submit" value="提交">
     <a href="/user/login">登陆</a>
 </form>
+<p style="color:red;">${requestScope.message}</p>
 </body>
 </html>
