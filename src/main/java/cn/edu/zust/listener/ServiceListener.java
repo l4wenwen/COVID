@@ -1,6 +1,7 @@
 package cn.edu.zust.listener;
 
 import cn.edu.zust.service.UserService;
+import cn.edu.zust.service.VacationService;
 import cn.edu.zust.util.DBUtil;
 
 import javax.servlet.ServletContextEvent;
@@ -16,7 +17,9 @@ public class ServiceListener implements ServletContextListener {
         String pwd = "root";
         DBUtil.openConnection(url, userName, pwd);
         UserService userService = new UserService();
+        VacationService vacationService = new VacationService();
         servletContextEvent.getServletContext().setAttribute("userService", userService);
+        servletContextEvent.getServletContext().setAttribute("vacationService", vacationService);
     }
 
     @Override

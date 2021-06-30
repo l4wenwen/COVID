@@ -12,7 +12,7 @@ public class User {
     private String name;
     private String userNum;
     private boolean sex;
-    private String college;
+    private int departmentNum;
     private String major;
     private String password;
     private Integer classNum;
@@ -21,11 +21,11 @@ public class User {
     public User() {
     }
 
-    public User(String name, String userNum, boolean sex, String college, String major, String password, Integer classNum, int userType) {
+    public User(String name, String userNum, boolean sex, int departmentNum, String major, String password, Integer classNum, int userType) {
         this.name = name;
         this.userNum = userNum;
         this.sex = sex;
-        this.college = college;
+        this.departmentNum = departmentNum;
         this.major = major;
         this.password = password;
         this.classNum = classNum;
@@ -64,12 +64,12 @@ public class User {
         this.sex = sex;
     }
 
-    public String getCollege() {
-        return college;
+    public int getDepartmentNum() {
+        return departmentNum;
     }
 
-    public void setCollege(String college) {
-        this.college = college;
+    public void setDepartmentNum(int departmentNum) {
+        this.departmentNum = departmentNum;
     }
 
     public String getMajor() {

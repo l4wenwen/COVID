@@ -11,6 +11,6 @@
     <title>Error</title>
 </head>
 <body>
-
+出现了错误...<a href="javascript: history.back();">返回</a>
 </body>
 </html>
