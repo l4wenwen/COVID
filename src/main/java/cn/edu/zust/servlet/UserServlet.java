@@ -26,20 +26,7 @@ public class UserServlet extends BaseServlet {
         request.getRequestDispatcher("/WEB-INF/" + methodName + ".jsp").forward(request, response);
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //doPost调用方法
-        String methodName = getMethod(request.getRequestURI());
-        try {
-            Method method = getClass().getDeclaredMethod(methodName,
-                    HttpServletRequest.class, HttpServletResponse.class);
-            method.invoke(this, request, response);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
-        }
-    }
-
-    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String userNum = request.getParameter("account");
         String password = request.getParameter("password");
         String message = "", directURI = "/WEB-INF/";
@@ -59,7 +46,7 @@ public class UserServlet extends BaseServlet {
         }
     }
 
-    private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String userNum = request.getParameter("account");
         String password = request.getParameter("password");
         String message = "", directURI = "/WEB-INF/";
