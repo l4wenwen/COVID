@@ -65,4 +65,12 @@ public class UserServlet extends BaseServlet {
         }
         request.getRequestDispatcher(directURI).forward(request, response);
     }
+
+    private void clockin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String userNum = request.getParameter("account");
+        String message = "打卡成功", directURI = "/WEB-INF/";
+        directURI += "studentHome.jsp";
+        request.setAttribute("message", message);
+        request.getRequestDispatcher(directURI).forward(request, response);
+    }
 }

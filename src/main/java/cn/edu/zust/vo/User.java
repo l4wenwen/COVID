@@ -3,8 +3,8 @@ package cn.edu.zust.vo;
 /**
  * type:
  *  0 管理员
- *  1 学生
- *  2 老师
+ *  1 老师
+ *  2 学生
  *
  */
 
@@ -13,7 +13,6 @@ public class User {
     private String userNum;
     private boolean sex;
     private int departmentNum;
-    private String major;
     private String password;
     private Integer classNum;
     private int userType;
@@ -21,12 +20,11 @@ public class User {
     public User() {
     }
 
-    public User(String name, String userNum, boolean sex, int departmentNum, String major, String password, Integer classNum, int userType) {
+    public User(String name, String userNum, boolean sex, int departmentNum, String password, Integer classNum, int userType) {
         this.name = name;
         this.userNum = userNum;
         this.sex = sex;
         this.departmentNum = departmentNum;
-        this.major = major;
         this.password = password;
         this.classNum = classNum;
         this.userType = userType;
@@ -70,14 +68,6 @@ public class User {
 
     public void setDepartmentNum(int departmentNum) {
         this.departmentNum = departmentNum;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
     }
 
     public Integer getClassNum() {
