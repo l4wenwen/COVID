@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "userServlet", urlPatterns = "user/*", loadOnStartup = 1)
-public class UserServelet extends BaseServlet {
+public class UserServlet extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
@@ -13,6 +13,6 @@ public class UserServelet extends BaseServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        
+
     }
 }
