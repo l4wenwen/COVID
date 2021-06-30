@@ -11,6 +11,7 @@
     <title>teacherHome</title>
 </head>
 <body>
-${message}
+你好：${sessionScope.user.name}
+<a href="${pageContext.request.contextPath}/vacation/list">查看请假请求</a>
 </body>
 </html>
