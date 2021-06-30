@@ -40,7 +40,7 @@ public class VacationServlet extends BaseServlet {
 
     //提交离校请求
     public void request(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (currentUser.getUserType() != 1) {
+        if (currentUser.getUserType() != 2) {
             response.sendRedirect("/user/userHome");
             return;
         }
@@ -68,7 +68,7 @@ public class VacationServlet extends BaseServlet {
     //列出该用户所有的离校请求
     public void list(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Vacation> vacations;
-        if (currentUser.getUserType() == 1) {
+        if (currentUser.getUserType() == 2) {
             vacations = vacationService.getVacationListById(currentUser.getUserNum());  //如果是学生，则获取自己的请假请求
         } else {
             vacations = vacationService.getVacationListByDepId(currentUser.getDepartmentNum());   //如果是老师，则通过学院ID获取请求
@@ -96,7 +96,6 @@ public class VacationServlet extends BaseServlet {
             request.getRequestDispatcher("/vacation/list").forward(request, response);
         }
     }
-
 
     private User getCurrentUser(HttpServletRequest request) {
         return (User) request.getSession().getAttribute("user");

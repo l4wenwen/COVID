@@ -12,7 +12,7 @@
     <title>学生请假记录</title>
 </head>
 <body>
-    <c:if test="${sessionScope.user.userType == 1}">
+    <c:if test="${sessionScope.user.userType == 2}">
         <a href="${pageContext.request.contextPath}/vacation/request">请假</a>
     </c:if>
     <a href="${pageContext.request.contextPath}/user/logout">登出</a>
@@ -36,10 +36,10 @@
                     <td>${vacation.way}</td>
                     <td>${vacation.state}</td>
                     <td>${vacation.requestTime}</td>
-                    <c:if test="${sessionScope.user.userType == 1 && vacation.state == 0}">
+                    <c:if test="${sessionScope.user.userType == 2 && vacation.state == 0}">
                         <td><a href="${pageContext.request.contextPath}/vacation/revoke?vid=${vacation.id}&user_id=${vacation.userId}">撤回</a></td>
                     </c:if>
-                    <c:if test="${sessionScope.user.userType == 2 && vacation.state == 0}">
+                    <c:if test="${sessionScope.user.userType == 1 && vacation.state == 0}">
                         <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.id}&operation=2">同意</a></td>
                         <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.id}&operation=1">拒绝</a></td>
                     </c:if>
