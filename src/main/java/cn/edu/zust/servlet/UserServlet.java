@@ -48,7 +48,7 @@ public class UserServlet extends BaseServlet {
             message = "账号密码不能为空。";
         else {
             user = userService.userLogin(userNum, password);
-            if (user == null) message = "账号密码错误";
+            if (user == null) message = "账号密码错误。";
         }
         if (user == null) {
             request.setAttribute("message", message);
