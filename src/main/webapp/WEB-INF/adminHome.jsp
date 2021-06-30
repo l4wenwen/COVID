@@ -11,6 +11,6 @@
     <title>adminHome</title>
 </head>
 <body>
-
+${message}
 </body>
 </html>

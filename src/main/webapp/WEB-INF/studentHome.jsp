@@ -11,6 +11,6 @@
     <title>studentHome</title>
 </head>
 <body>
-
+${message}
 </body>
 </html>

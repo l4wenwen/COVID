@@ -11,6 +11,6 @@
     <title>teacherHome</title>
 </head>
 <body>
-
+${message}
 </body>
 </html>
