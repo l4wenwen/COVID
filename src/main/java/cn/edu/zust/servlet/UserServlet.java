@@ -79,12 +79,20 @@ public class UserServlet extends BaseServlet {
         request.getRequestDispatcher(directURI).forward(request, response);
     }
 
+    private void clockin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String userNum = request.getParameter("account");
+        String message = "打卡成功", directURI = "/WEB-INF/";
+        directURI += "studentHome.jsp";
+        request.setAttribute("message", message);
+        request.getRequestDispatcher(directURI).forward(request, response);
+    }
+
     //获取URI中使用的方法
     private String getMethod(String uri) {
         int pos = uri.lastIndexOf('/');
         String method = "error";
         if (pos != -1)
-            method = uri.substring(pos+1);
+            method = uri.substring(pos + 1);
         return method;
     }
 }

@@ -11,7 +11,7 @@
     <title>clockin</title>
 </head>
 <body>
-<form action="">
+<form action="/user/clockin" method="post">
     今日体温是否正常？
     否<input type="radio" name="isTemperature" value="0">
     是<input type="radio" name="isTemperature" value="1">
@@ -65,6 +65,7 @@
     否<input type="radio" name="isOutCity" value="0">
     是<input type="radio" name="isOutCity" value="1">
     <br />
+    <input type="submit" value="提交">
 </form>
 </body>
 </html>
