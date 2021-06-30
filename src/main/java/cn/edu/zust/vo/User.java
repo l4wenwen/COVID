@@ -1,14 +1,13 @@
 package cn.edu.zust.vo;
 
 /**
- * @author sunyin
- *
- *  type
+ * type:
  *  0 管理员
  *  1 学生
  *  2 老师
  *
  */
+
 public class User {
     private String name;
     private String userNum;
