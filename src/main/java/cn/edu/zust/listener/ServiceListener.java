@@ -1,5 +1,6 @@
 package cn.edu.zust.listener;
 
+import cn.edu.zust.service.UserService;
 import cn.edu.zust.util.DBUtil;
 
 import javax.servlet.ServletContextEvent;
@@ -14,6 +15,8 @@ public class ServiceListener implements ServletContextListener {
         String userName = "root";
         String pwd = "root";
         DBUtil.openConnection(url, userName, pwd);
+        UserService userService = new UserService();
+        servletContextEvent.getServletContext().setAttribute("userService", userService);
     }
 
     @Override

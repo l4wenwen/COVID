@@ -11,22 +11,24 @@ package cn.edu.zust.vo;
  */
 public class User {
     private String name;
-    private Integer userNum;
+    private String userNum;
     private boolean sex;
     private String college;
     private String major;
+    private String password;
     private Integer classNum;
     private int userType;
 
     public User() {
     }
 
-    public User(String name, Integer userNum, boolean sex, String college, String major, Integer classNum, int userType) {
+    public User(String name, String userNum, boolean sex, String college, String major, String password, Integer classNum, int userType) {
         this.name = name;
         this.userNum = userNum;
         this.sex = sex;
         this.college = college;
         this.major = major;
+        this.password = password;
         this.classNum = classNum;
         this.userType = userType;
     }
@@ -39,12 +41,20 @@ public class User {
         this.name = name;
     }
 
-    public Integer getUserNum() {
+    public String getUserNum() {
         return userNum;
     }
 
-    public void setUserNum(Integer userNum) {
+    public void setUserNum(String userNum) {
         this.userNum = userNum;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isSex() {
