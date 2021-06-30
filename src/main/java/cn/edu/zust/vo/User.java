@@ -1,41 +1,42 @@
 package cn.edu.zust.vo;
 
 /**
- * type:
+ * @type
  *  0 管理员
  *  1 老师
  *  2 学生
  *
  */
-
 public class User {
-    private String name;
     private String userNum;
-    private boolean sex;
-    private int departmentNum;
-    private String password;
+    private Integer collegeNum;
+    private Integer majorNum;
     private Integer classNum;
-    private int userType;
+    private Integer userType;
+    private String userName;
+    private String password;
+    private boolean sex;
 
     public User() {
     }
 
-    public User(String name, String userNum, boolean sex, int departmentNum, String password, Integer classNum, int userType) {
-        this.name = name;
+    public User(String userName, String userNum, boolean sex, Integer collegeNum, Integer majorNum, String password, Integer classNum, Integer userType) {
+        this.userName = userName;
         this.userNum = userNum;
         this.sex = sex;
-        this.departmentNum = departmentNum;
+        this.collegeNum = collegeNum;
+        this.majorNum = majorNum;
         this.password = password;
         this.classNum = classNum;
         this.userType = userType;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserNum() {
@@ -46,14 +47,6 @@ public class User {
         this.userNum = userNum;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isSex() {
         return sex;
     }
@@ -62,12 +55,28 @@ public class User {
         this.sex = sex;
     }
 
-    public int getDepartmentNum() {
-        return departmentNum;
+    public Integer getCollegeNum() {
+        return collegeNum;
     }
 
-    public void setDepartmentNum(int departmentNum) {
-        this.departmentNum = departmentNum;
+    public void setCollegeNum(Integer collegeNum) {
+        this.collegeNum = collegeNum;
+    }
+
+    public Integer getMajorNum() {
+        return majorNum;
+    }
+
+    public void setMajorNum(Integer majorNum) {
+        this.majorNum = majorNum;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getClassNum() {
@@ -78,11 +87,11 @@ public class User {
         this.classNum = classNum;
     }
 
-    public int getUserType() {
+    public Integer getUserType() {
         return userType;
     }
 
-    public void setUserType(int userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
     }
 }

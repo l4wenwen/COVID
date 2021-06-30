@@ -27,8 +27,8 @@
     当前的隔离状态？<br />
     未曾隔离<input type="radio" name="quarantine" value="0">
     曾隔离，已解除<input type="radio" name="quarantine" value="1">
-    正在居家隔离<input type="radio" name="quarantine" value="0">
-    正在集中隔离<input type="radio" name="quarantine" value="1">
+    正在居家隔离<input type="radio" name="quarantine" value="2">
+    正在集中隔离<input type="radio" name="quarantine" value="3">
     <br />
     本人同住亲友近14天内是否途径或停留疫情中高风险地区？<br />
     否<input type="radio" name="isRecentArea" value="0">

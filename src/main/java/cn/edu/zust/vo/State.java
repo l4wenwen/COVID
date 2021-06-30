@@ -1,23 +1,39 @@
 package cn.edu.zust.vo;
 
+/**
+ * @quarantine
+ * 0 未曾隔离
+ * 1 曾隔离，已解除
+ * 2 正在居家隔离
+ * 3 正在集中隔离
+ *
+ * @healthCodeType
+ *  0 绿色
+ *  1 黄色
+ *  2 红色
+ */
 public class State {
+    private Integer stateNum;
+    private String userNum;
     private boolean isTemperature;
     private boolean isCovid;
     private boolean isLikeCovid;
-    private String quarantine;
+    private Integer quarantine;
     private boolean isRecentArea;
     private boolean isRecentCountry;
     private boolean isRecentPeople;
     private boolean symptom;
     private boolean isAbnormal;
-    private String healthCodeColor;
+    private Integer healthCodeType;
     private boolean isOutSchool;
     private boolean isOutCity;
 
     public State() {
     }
 
-    public State(boolean isTemperature, boolean isCovid, boolean isLikeCovid, String quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, String healthCodeColor, boolean isOutSchool, boolean isOutCity) {
+    public State(Integer stateNum, String userNum, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
+        this.stateNum = stateNum;
+        this.userNum = userNum;
         this.isTemperature = isTemperature;
         this.isCovid = isCovid;
         this.isLikeCovid = isLikeCovid;
@@ -27,9 +43,25 @@ public class State {
         this.isRecentPeople = isRecentPeople;
         this.symptom = symptom;
         this.isAbnormal = isAbnormal;
-        this.healthCodeColor = healthCodeColor;
+        this.healthCodeType = healthCodeType;
         this.isOutSchool = isOutSchool;
         this.isOutCity = isOutCity;
+    }
+
+    public Integer getStateNum() {
+        return stateNum;
+    }
+
+    public void setStateNum(Integer stateNum) {
+        this.stateNum = stateNum;
+    }
+
+    public String getUserNum() {
+        return userNum;
+    }
+
+    public void setUserNum(String userNum) {
+        this.userNum = userNum;
     }
 
     public boolean isTemperature() {
@@ -56,11 +88,11 @@ public class State {
         isLikeCovid = likeCovid;
     }
 
-    public String getQuarantine() {
+    public Integer getQuarantine() {
         return quarantine;
     }
 
-    public void setQuarantine(String quarantine) {
+    public void setQuarantine(Integer quarantine) {
         this.quarantine = quarantine;
     }
 
@@ -104,12 +136,12 @@ public class State {
         isAbnormal = abnormal;
     }
 
-    public String getHealthCodeColor() {
-        return healthCodeColor;
+    public Integer getHealthCodeType() {
+        return healthCodeType;
     }
 
-    public void setHealthCodeColor(String healthCodeColor) {
-        this.healthCodeColor = healthCodeColor;
+    public void setHealthCodeType(Integer healthCodeType) {
+        this.healthCodeType = healthCodeType;
     }
 
     public boolean isOutSchool() {

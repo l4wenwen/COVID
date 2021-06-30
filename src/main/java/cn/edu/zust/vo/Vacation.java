@@ -3,15 +3,15 @@ package cn.edu.zust.vo;
 import java.util.Date;
 
 public class Vacation {
-    private int id;
+    private Integer vacationNum;
     private String reason;
     private String startTime;
     private String endTime;
     private String requestTime;
     private String way;
-    private String userId;
+    private String userNum;
     private String userName;
-    private int state;
+    private Integer state;
     public static final int STATE_PENDING = 0;
     public static final int STATE_REJECT = 1;
     public static final int STATE_ACCEPT = 2;
@@ -19,60 +19,24 @@ public class Vacation {
     public Vacation() {
     }
 
-    public Vacation(int id, String reason, String startTime, String endTime, String requestTime, String way, String userId, String userName, int state) {
-        this.id = id;
+    public Vacation(Integer vacationNum, String reason, String startTime, String endTime, String requestTime, String way, String userNum, String userName, Integer state) {
+        this.vacationNum = vacationNum;
         this.reason = reason;
         this.startTime = startTime;
         this.endTime = endTime;
         this.requestTime = requestTime;
         this.way = way;
-        this.userId = userId;
+        this.userNum = userNum;
         this.userName = userName;
         this.state = state;
     }
 
-    public Vacation(int id, String reason, String startTime, String endTime, String requestTime, String way, String userId, int state) {
-        this.id = id;
-        this.reason = reason;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.requestTime = requestTime;
-        this.way = way;
-        this.userId = userId;
-        this.state = state;
+    public Integer getVacationNum() {
+        return vacationNum;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setVacationNum(Integer vacationNum) {
+        this.vacationNum = vacationNum;
     }
 
     public String getReason() {
@@ -113,5 +77,41 @@ public class Vacation {
 
     public void setWay(String way) {
         this.way = way;
+    }
+
+    public String getUserNum() {
+        return userNum;
+    }
+
+    public void setUserNum(String userNum) {
+        this.userNum = userNum;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public static int getStatePending() {
+        return STATE_PENDING;
+    }
+
+    public static int getStateReject() {
+        return STATE_REJECT;
+    }
+
+    public static int getStateAccept() {
+        return STATE_ACCEPT;
     }
 }
