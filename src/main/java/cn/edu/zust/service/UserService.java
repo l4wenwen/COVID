@@ -15,7 +15,7 @@ public class UserService {
             String userName = rs.getString("user_name");
             int userType  = rs.getInt("user_type");
             int depNo = rs.getInt("dept_no");
-            user = new User(userName, userNum, true, depNo, password, 1, userType);
+            user = new User(userName, userNum, true, depNo, "major", password, 1, userType);
         }
         return user;
     }
