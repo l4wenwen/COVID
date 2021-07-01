@@ -9,14 +9,17 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-    <form action="/user/login" method="post">
-        <label>账号：<input type="text" name="account" /></label> <br />
-        <label>密码：<input type="password" name="password" /></label> <br />
-        <input type="submit" value="提交">
-        <a href="/user/register">注册</a>
-    </form>
+<form class="login-box" action="/user/login" method="post">
+    <h1>Login</h1>
+    <label><input type="text" name="account" placeholder="学号" /></label> <br />
+    <label><input type="password" name="password" placeholder="密码"/></label> <br />
+    <input type="submit" value="Login">
     <p style="color: red">${requestScope.message}</p>
+<%--    <a href="/user/register">注册</a>--%>
+</form>
+
 </body>
 </html>

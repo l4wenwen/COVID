@@ -17,7 +17,8 @@ public class UserServlet extends BaseServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //doGet跳转至相应界面
         String methodName = getMethod(request.getRequestURI());
-        if ("logout".equals(methodName) || "userHome".equals(methodName)) {
+        if ("logout".equals(methodName) || "userHome".equals(methodName)
+                || "update".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -80,6 +81,18 @@ public class UserServlet extends BaseServlet {
         else
             directURI += "studentHome.jsp";
         request.getRequestDispatcher(directURI).forward(request, response);
+    }
+
+    public void changePassword(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    public void update(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    public void profile(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
