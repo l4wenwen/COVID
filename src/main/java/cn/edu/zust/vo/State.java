@@ -29,7 +29,7 @@ public class State {
     private boolean isOutSchool;
     private boolean isOutCity;
 
-    public State() {
+    public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, boolean isOutSchool, boolean isOutCity) {
     }
 
     public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
