@@ -1,7 +1,5 @@
 package cn.edu.zust.vo;
 
-import java.util.Date;
-
 public class Vacation {
     private Integer vacationNum;
     private String reason;
