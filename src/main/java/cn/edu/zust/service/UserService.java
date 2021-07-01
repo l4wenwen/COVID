@@ -28,7 +28,7 @@ public class UserService {
         ResultSet rs = DBUtil.select(sqlCheck);
         boolean isRegistered = false;
         if (rs == null || !rs.next()) {
-            isRegistered = DBUtil.update(sqlUpdate);
+            isRegistered = DBUtil.update(sqlUpdate) == 1;
         }
         return isRegistered;
     }

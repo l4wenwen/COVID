@@ -63,7 +63,7 @@
         <plugin>
           <groupId>org.eclipse.jetty</groupId>
           <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.4.v20170414</version>
+          <version>9.4.8.v20171121</version>
         </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

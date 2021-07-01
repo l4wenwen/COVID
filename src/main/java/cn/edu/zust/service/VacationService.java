@@ -44,7 +44,7 @@ public class VacationService {
                 + "','" + vacation.getStartTime() + "','" + vacation.getEndTime() + "','" +
                 vacation.getState() + "','" + user.getUserNum() + "','" + vacation.getRequestTime() + "','" +
                 vacation.getWay() + "')";
-        return DBUtil.update(sql);
+        return DBUtil.update(sql) == 1;
     }
 
     public boolean revokeRequest(String userNum, String vacationNum) throws SQLException {
@@ -55,13 +55,13 @@ public class VacationService {
         if (rs != null && rs.next()) {
             int state = rs.getInt("state");
             if (state == Vacation.STATE_PENDING)
-                isRevoked = DBUtil.update(sqlUpdate);
+                isRevoked = DBUtil.update(sqlUpdate) == 1;
         }
         return isRevoked;
     }
 
     public boolean performDecision(int vacationNum, int operation) {
         String sql = "UPDATE vacation SET state = " + operation + " WHERE vacationNum = " + vacationNum;
-        return DBUtil.update(sql);
+        return DBUtil.update(sql) == 1;
     }
 }

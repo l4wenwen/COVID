@@ -1,6 +1,7 @@
 package cn.edu.zust.servlet;
 
 import cn.edu.zust.vo.State;
+import cn.edu.zust.vo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,23 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 
 @WebServlet(name = "stateServlet", urlPatterns = "state/*", loadOnStartup = 1)
 public class StateServlet extends BaseServlet {
-    private boolean isOutCity;
-
-    /**
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     * @function doGet跳转至相应界面
-     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = getMethod(request.getRequestURI());
-        if ("addState".equals(methodName) || "delState".equals(methodName)
-                || "updateState".equals(methodName) || "selectState".equals(methodName)) {
+        if ("addState".equals(methodName) || "selectState".equals(methodName)
+                || "updateState".equals(methodName) || "delState".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -37,8 +30,18 @@ public class StateServlet extends BaseServlet {
         }
     }
 
-    public void selectState(HttpServletRequest request, HttpServletResponse response) {
-
+    public void selectState(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        String collegeName = request.getParameter("collegeName");
+        if (!isGoodString(startTime) || !isGoodString(endTime) || !isGoodString(collegeName)) {
+            request.setAttribute("message", "输入不能为空。");
+            request.getRequestDispatcher("/WEB-INF/selectState.jsp").forward(request, response);
+            return;
+        }
+        User user = (User) request.getSession().getAttribute("user");
+        stateService.selectState(startTime, endTime, collegeName, user.getUserType(), user.getUserNum());
+        response.sendRedirect("/state/stateList");
     }
 
     public void delState(HttpServletRequest request, HttpServletResponse response) {
@@ -67,11 +70,18 @@ public class StateServlet extends BaseServlet {
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
-            request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/addState.jsp").forward(request, response);
             return;
         }
         State state = new State(stateNum, userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine,
                 isRecentArea, isRecentCountry, isRecentPeople, symptom, isAbnormal, healthCodeType, isOutSchool, isOutCity);
-        stateService.addState(state);
+        Integer cnt = stateService.addState(state);
+        if (cnt == 1) {
+            request.setAttribute("message", "今日打卡成功。");
+            response.sendRedirect("/state/success");
+        } else {
+            request.setAttribute("message", "今日打卡失败。");
+            request.getRequestDispatcher("/state/addState").forward(request, response);
+        }
     }
 }

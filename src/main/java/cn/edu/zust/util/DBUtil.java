@@ -49,14 +49,14 @@ public class DBUtil {
         }
     }
 
-    public static boolean update(String sql) {
-        if (con == null) return false;
+    public static Integer update(String sql) {
+        if (con == null) return -1;
         try {
             Statement st = con.createStatement();
-            return st.executeUpdate(sql) == 1;
+            return st.executeUpdate(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return -1;
     }
 }

@@ -54,13 +54,16 @@
     绿色<input type="radio" name="healthCodeColor" value="0">
     是<input type="radio" name="healthCodeColor" value="1">
     <br />
+    今日是否出校？<br />
     否<input type="radio" name="isOutSchool" value="0">
     是<input type="radio" name="isOutSchool" value="1">
     <br />
+    今日是否出城？<br />
     否<input type="radio" name="isOutCity" value="0">
     是<input type="radio" name="isOutCity" value="1">
     <br />
     <input type="submit" value="提交">
 </form>
+<p style="color: red">${requestScope.message}</p>
 </body>
 </html>

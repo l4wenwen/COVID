@@ -1,12 +1,5 @@
 package cn.edu.zust.vo;
 
-/**
- * @type
- *  0 管理员
- *  1 老师
- *  2 学生
- *
- */
 public class User {
     private String userNum;
     private Integer collegeNum;
@@ -98,6 +91,12 @@ public class User {
         this.classNum = classNum;
     }
 
+    /**
+     * @type
+     *  0 管理员
+     *  1 老师
+     *  2 学生
+     */
     public Integer getUserType() {
         return userType;
     }
