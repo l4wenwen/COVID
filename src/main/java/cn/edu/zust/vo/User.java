@@ -20,6 +20,17 @@ public class User {
     public User() {
     }
 
+    /**
+     *
+     * @param userName      用户姓名
+     * @param userNum       用户编号
+     * @param sex           用户性别
+     * @param collegeNum    学院编号
+     * @param majorNum      专业编号
+     * @param password      密码
+     * @param classNum      班级编号
+     * @param userType      用户类别(0管理员, 1老师, 2学生)
+     */
     public User(String userName, String userNum, boolean sex, Integer collegeNum, Integer majorNum, String password, Integer classNum, Integer userType) {
         this.userName = userName;
         this.userNum = userNum;

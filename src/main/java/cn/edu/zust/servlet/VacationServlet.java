@@ -65,7 +65,6 @@ public class VacationServlet extends BaseServlet {
         }
     }
 
-    //列出该用户所有的离校请求
     public void list(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Vacation> vacations;
         if (currentUser.getUserType() == 2) {
