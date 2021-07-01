@@ -30,6 +30,7 @@
             </div>
             <div class="pass">
                 <a href="#">忘记密码?</a>
+                <span>${requestScope.message}</span>
             </div>
             <div class="field">
                 <input type="submit" value="登录">
@@ -46,7 +47,6 @@
         </div>
         <div class="signup">没有账号？
             <a href="${pageContext.request.contextPath}/user/register">注册</a>
-            <p style="color: red">${requestScope.message}</p>
         </div>
     </div>
 </div>

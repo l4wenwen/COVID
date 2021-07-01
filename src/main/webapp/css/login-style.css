@@ -80,6 +80,8 @@
 .pass{
     text-align: left;
     margin: 10px 0;
+    display:block;
+    height:25px;
 }
 .pass a{
     color: white;
@@ -89,6 +91,12 @@
 .pass:hover a{
     text-decoration: underline;
 }
+
+.pass span{
+    color: red;
+    float: right;
+}
+
 .field input[type="submit"]{
     background: #3498db;
     border: 1px solid #2691d9;
