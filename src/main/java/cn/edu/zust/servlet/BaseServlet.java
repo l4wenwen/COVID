@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class BaseServlet extends HttpServlet {
@@ -39,12 +41,27 @@ public class BaseServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @return 当前时间
+     */
+    protected String getTime() {
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
+        return simpleDateFormat.format(date);
+    }
+
+    protected boolean isGoodString(String str) {
+        return str != null && !"".equals(str.trim());
+    }
+
     //获取URI中使用的方法
     protected String getMethod(String uri) {
         int pos = uri.lastIndexOf('/');
         String method = "error";
-        if (pos != -1)
+        if (pos != -1) {
             method = uri.substring(pos+1);
+        }
         return method;
     }
 }

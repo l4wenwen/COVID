@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>clockin</title>
+    <title>addState</title>
 </head>
 <body>
-<form action="/user/clockin" method="post">
+<form action="/state/addState" method="post">
     今日体温是否正常？<br />
     否<input type="radio" name="isTemperature" value="0">
     是<input type="radio" name="isTemperature" value="1">
