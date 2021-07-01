@@ -95,6 +95,10 @@ public class UserServlet extends BaseServlet {
 
     }
 
+    public void tmp(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
         response.sendRedirect("/user/login");

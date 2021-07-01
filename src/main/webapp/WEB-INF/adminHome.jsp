@@ -11,7 +11,6 @@
     <title>adminHome</title>
 </head>
 <body>
-你好：${sessionScope.user.userName}
-<a href="${pageContext.request.contextPath}/vacation/list">查看请假请求</a>
+<jsp:include page="template/navigate.jsp" />
 </body>
 </html>

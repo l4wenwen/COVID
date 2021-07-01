@@ -48,17 +48,18 @@ public class VacationServlet extends BaseServlet {
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         String transport = request.getParameter("transport");
-        if (!isGoodString(reason) || !isGoodString(startTime) ||!isGoodString(endTime) || isGoodString(transport)) {
+
+        if (!isGoodString(reason) || !isGoodString(startTime) ||!isGoodString(endTime) || !isGoodString(transport)) {
             request.setAttribute("message", "输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/vacationRequest.jsp").forward(request, response);
-            return;
-        }
-        Vacation vacation = new Vacation(0, reason, startTime, endTime, getTime(), transport, currentUser.getUserNum(), Vacation.STATE_PENDING);
-        if (vacationService.submitVacationRequest(currentUser, vacation)) {
-            response.sendRedirect("/vacation/list");
         } else {
-            request.setAttribute("message", "提交请求失败。");
-            request.getRequestDispatcher("/vacation/request").forward(request, response);
+            Vacation vacation = new Vacation(0, reason, startTime, endTime, getTime(), transport, currentUser.getUserNum(), Vacation.STATE_PENDING);
+            if (vacationService.submitVacationRequest(currentUser, vacation)) {
+                response.sendRedirect("/vacation/list");
+            } else {
+                request.setAttribute("message", "提交请求失败。");
+                request.getRequestDispatcher("/vacation/request").forward(request, response);
+            }
         }
     }
 
