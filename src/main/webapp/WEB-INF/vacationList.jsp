@@ -12,10 +12,7 @@
     <title>学生请假记录</title>
 </head>
 <body>
-    <c:if test="${sessionScope.user.userType == 2}">
-        <a href="${pageContext.request.contextPath}/vacation/request">请假</a>
-    </c:if>
-    <a href="${pageContext.request.contextPath}/user/logout">登出</a>
+    <jsp:include page="template/navigate.jsp" />
     <p style="color: red">${requestScope.message}</p>
     <table>
         <th>姓名</th>

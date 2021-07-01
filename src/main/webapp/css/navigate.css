@@ -1,7 +1,74 @@
-.navigation {
-    position: fixed;
-    width: 200px;
-    height: 100%;
-    background: #222831;
+body {
+    background: #EEEEEE;
+}
 
+nav {
+    background: #222831;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 100px;
+}
+
+nav .logo {
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+nav .nav-item {
+    display: flex;
+    flex: 1;
+    list-style: none;
+    padding: 0 0 0 40px;
+}
+
+nav .nav-item li {
+    padding: 0 15px;
+}
+
+nav .nav-item li a {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+nav .nav-item li a:hover {
+    color: #00ADB5;
+}
+
+nav form {
+    display: flex;
+    height: 40px;
+    background: #393E46;
+    min-width: 18%!important;
+    border-radius: 2px;
+    padding: 2px;
+    border: 1px solid rgba(155,155,155,0.2);
+}
+
+nav form .search-data {
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
+    color: #FFF;
+    font-weight: 500;
+    background: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 17px;
+}
+
+nav form button {
+    padding: 0 15px;
+    background: #00ADB5;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    color: #FFF;
+    border-radius: 2px;
 }

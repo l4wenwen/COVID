@@ -11,6 +11,7 @@
     <title>学生请假</title>
 </head>
 <body>
+    <jsp:include page="template/navigate.jsp" />
     <a href="${pageContext.request.contextPath}/vacation/list">查看请求</a>
     <form action="${pageContext.request.contextPath}/vacation/request" method="post">
         <label>理由：<input type="text" name="reason" /></label> <br />

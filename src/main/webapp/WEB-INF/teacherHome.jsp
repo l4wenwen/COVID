@@ -8,11 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>teacherHome</title>
+    <title>tercherHome</title>
 </head>
 <body>
-你好：${sessionScope.user.userName}
-<a href="${pageContext.request.contextPath}/vacation/list">查看请假请求</a>
-<a href="${pageContext.request.contextPath}/user/profile">查看个人资料</a>
+<jsp:include page="template/navigate.jsp" />
 </body>
 </html>

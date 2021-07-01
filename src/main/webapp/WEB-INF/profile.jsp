@@ -11,10 +11,7 @@
     <title>用户信息</title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/vacation/list">查看请假请求</a>
-<a href="${pageContext.request.contextPath}/vacation/request">请假</a>
-<a href="${pageContext.request.contextPath}/user/logout">登出</a>
-<a href="${pageContext.request.contextPath}/user/changePassword">修改密码</a> <br/>
+<jsp:include page="template/navigate.jsp" />
 姓名：${sessionScope.user.userName} <br/>
 性别：${sessionScope.user.sex ? "男":"女"} <br/>
 </body>
