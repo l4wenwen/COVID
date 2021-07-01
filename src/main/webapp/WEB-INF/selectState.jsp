@@ -11,7 +11,7 @@
     <title>stateList</title>
 </head>
 <body>
-<form action="/state/selectState" method="post">
+<form action="${pageContext.request.contextPath}/state/selectState" method="post">
     开始日期：<input type="date" name="startTime" checked/><br />
     结束日期：<input type="date" name="endTime" checked/><br />
     所在学院：<input type="text" name="collegeName" checked/><br />
