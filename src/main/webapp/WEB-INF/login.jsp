@@ -12,13 +12,13 @@
     <meta charset="utf-8">
     <title>login</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login-style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="bg-img">
     <div class="content">
         <header>云战役</header>
-        <form action="#">
+        <form action="${pageContext.request.contextPath}/user/login" method="post">
             <div class="field">
                 <span class="fa fa-user"></span>
                 <input type="text" name="account" required placeholder="学号">
@@ -30,6 +30,7 @@
             </div>
             <div class="pass">
                 <a href="#">忘记密码?</a>
+                <span style="color: red">${requestScope.message}</span>
             </div>
             <div class="field">
                 <input type="submit" value="登录">
@@ -46,7 +47,6 @@
         </div>
         <div class="signup">没有账号？
             <a href="${pageContext.request.contextPath}/user/register">注册</a>
-            <p style="color: red">${requestScope.message}</p>
         </div>
     </div>
 </div>
