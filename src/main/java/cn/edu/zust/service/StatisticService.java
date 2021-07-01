@@ -18,7 +18,7 @@ public class StatisticService {
     }
 
     public Statistic getAllStatistic(String currentDate) throws SQLException {
-        String sql = "SELECT * FROM statistic WHERE submitDate = " + currentDate;
+        String sql = "SELECT * FROM statistic WHERE submitDate = '" + currentDate + "'";
         ResultSet rs = DBUtil.select(sql);
         Statistic statistic = null;
         if (rs != null && rs.next()) {
