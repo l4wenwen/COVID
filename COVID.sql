@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `Vacation` (
     `endTime` DATE NOT NULL,
     `requestTime` DATE NOT NULL,
     `way` VARCHAR(255) NOT NULL,
-    `userName` VARCHAR(10) NOT NULL,
     `state` INT NOT NULL,
     FOREIGN KEY(userNum) REFERENCES `User`(userNum)
 );
