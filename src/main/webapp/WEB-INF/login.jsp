@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/basic.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 <body>
 <form class="login-box" action="/user/login" method="post">
