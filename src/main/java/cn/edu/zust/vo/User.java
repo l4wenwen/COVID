@@ -5,7 +5,6 @@ package cn.edu.zust.vo;
  *  0 管理员
  *  1 老师
  *  2 学生
- *
  */
 public class User {
     private String userNum;
