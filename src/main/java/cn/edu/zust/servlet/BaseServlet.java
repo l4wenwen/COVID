@@ -1,5 +1,6 @@
 package cn.edu.zust.servlet;
 
+import cn.edu.zust.service.StateService;
 import cn.edu.zust.service.UserService;
 import cn.edu.zust.service.VacationService;
 
@@ -16,11 +17,13 @@ import java.lang.reflect.Method;
 public class BaseServlet extends HttpServlet {
     protected UserService userService;
     protected VacationService vacationService;
+    protected StateService stateService;
     @Override
     public void init() {
         ServletContext application = getServletContext();
         userService = (UserService) application.getAttribute("userService");
         vacationService = (VacationService) application.getAttribute("vacationService");
+        stateService = (StateService) application.getAttribute("stateService");
     }
 
     @Override

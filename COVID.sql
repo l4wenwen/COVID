@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `State` (
 CREATE TABLE IF NOT EXISTS `Vacation` (
     `vacationNum` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     `userNum` CHAR(9) NOT NULL,
+    `stateTime` DATE NOT NULL,
     `reason` VARCHAR(255) NOT NULL,
     `startTime` DATE NOT NULL,
     `endTime` DATE NOT NULL,

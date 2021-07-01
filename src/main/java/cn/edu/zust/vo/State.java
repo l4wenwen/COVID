@@ -15,6 +15,7 @@ package cn.edu.zust.vo;
 public class State {
     private Integer stateNum;
     private String userNum;
+    private String stateTime;
     private boolean isTemperature;
     private boolean isCovid;
     private boolean isLikeCovid;
@@ -31,9 +32,10 @@ public class State {
     public State() {
     }
 
-    public State(Integer stateNum, String userNum, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
+    public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
         this.stateNum = stateNum;
         this.userNum = userNum;
+        this.stateTime = stateTime;
         this.isTemperature = isTemperature;
         this.isCovid = isCovid;
         this.isLikeCovid = isLikeCovid;
@@ -62,6 +64,14 @@ public class State {
 
     public void setUserNum(String userNum) {
         this.userNum = userNum;
+    }
+
+    public String getStateTime() {
+        return stateTime;
+    }
+
+    public void setStateTime(String stateTime) {
+        this.stateTime = stateTime;
     }
 
     public boolean isTemperature() {
