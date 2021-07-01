@@ -67,7 +67,7 @@ public class StateServlet extends BaseServlet {
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
-            request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/selectState.jsp").forward(request, response);
             return;
         }
         State state = new State(stateNum, userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine,
