@@ -1,6 +1,7 @@
 package cn.edu.zust.servlet;
 
 import cn.edu.zust.service.StateService;
+import cn.edu.zust.service.StatisticService;
 import cn.edu.zust.service.UserService;
 import cn.edu.zust.service.VacationService;
 
@@ -20,12 +21,14 @@ public class BaseServlet extends HttpServlet {
     protected UserService userService;
     protected VacationService vacationService;
     protected StateService stateService;
+    protected StatisticService statisticService;
     @Override
     public void init() {
         ServletContext application = getServletContext();
         userService = (UserService) application.getAttribute("userService");
         vacationService = (VacationService) application.getAttribute("vacationService");
         stateService = (StateService) application.getAttribute("stateService");
+        statisticService = (StatisticService) application.getAttribute("statisticService");
     }
 
     @Override
@@ -47,6 +50,13 @@ public class BaseServlet extends HttpServlet {
     protected String getTime() {
         Date date = new Date();
         String strDateFormat = "yyyy-MM-dd HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
+        return simpleDateFormat.format(date);
+    }
+
+    protected String getDate() {
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
         return simpleDateFormat.format(date);
     }

@@ -9,10 +9,17 @@
 <html>
 <head>
     <title>adminHome</title>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
-你好：${sessionScope.user.userName}
-<a href="${pageContext.request.contextPath}/vacation/list">查看请假请求</a>
-<a href="${pageContext.request.contextPath}/state/list">查看请假请求</a>
+<jsp:include page="template/import.jsp" />
+<jsp:include page="template/navigate.jsp" />
+<c:if test="${requestScope.statistic == null}">
+    <c:redirect url="/statistic/all" />
+</c:if>
+${requestScope.statistic.totalNum} <br />
+${requestScope.statistic.filledNum} <br />
+${requestScope.statistic.highRiskNum} <br />
+${requestScope.statistic.passRiskAreaNum} <br />
 </body>
 </html>

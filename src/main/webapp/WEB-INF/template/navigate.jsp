@@ -10,7 +10,9 @@
         <c:if test="${sessionScope.user.userType == 2}">
             <li><a href="${pageContext.request.contextPath}/vacation/request">Ask For Leave</a></li>
         </c:if>
+        <c:if test="${sessionScope.user.userType != 0}">
         <li><a href="${pageContext.request.contextPath}/vacation/list">Vacation</a></li>
+        </c:if>
         <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>
     </div>
     <c:if test="${sessionScope.user.userType != 2}">

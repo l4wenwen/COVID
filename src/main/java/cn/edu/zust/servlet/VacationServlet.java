@@ -21,9 +21,7 @@ public class VacationServlet extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = getMethod(request.getRequestURI());
-        if ((currentUser = getCurrentUser(request)) == null) {
-            response.sendRedirect("/user/login");
-        }
+        if (currentUser == null) currentUser = getCurrentUser(request);
         if (!"request".equals(methodName)) {
             doPost(request, response);
         } else {

@@ -9,17 +9,16 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/basic.css">
-    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/basic.css">
 </head>
 <body>
-<form class="login-box" action="/user/login" method="post">
+<form class="login-box" action="${pageContext.request.contextPath}/user/login" method="post">
     <h1>Login</h1>
-    <label><input type="text" name="account" placeholder="学号" /></label> <br />
-    <label><input type="password" name="password" placeholder="密码"/></label> <br />
+    <input type="text" name="account" placeholder="学号" /> <br />
+    <input type="password" name="password" placeholder="密码"/> <br />
     <input type="submit" value="Login">
     <p style="color: red">${requestScope.message}</p>
-<%--    <a href="/user/register">注册</a>--%>
 </form>
 
 </body>
