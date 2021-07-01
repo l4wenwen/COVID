@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `State` (
     `isRecentArea` BOOLEAN NOT NULL,
     `isRecentCountry` BOOLEAN NOT NULL,
     `isRecentPeople` BOOLEAN NOT NULL,
-    `symptom` BOOLEAN NOT NULL,
+    `isSymptom` BOOLEAN NOT NULL,
     `isAbnormal` BOOLEAN NOT NULL,
     `healthCodeType` INT NOT NULL,
     `isOutSchool` BOOLEAN NOT NULL,

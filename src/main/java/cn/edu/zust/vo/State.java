@@ -23,16 +23,16 @@ public class State {
     private boolean isRecentArea;
     private boolean isRecentCountry;
     private boolean isRecentPeople;
-    private boolean symptom;
+    private boolean isSymptom;
     private boolean isAbnormal;
     private Integer healthCodeType;
     private boolean isOutSchool;
     private boolean isOutCity;
 
-    public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, boolean isOutSchool, boolean isOutCity) {
+    public State() {
     }
 
-    public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean symptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
+    public State(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean isSymptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
         this.stateNum = stateNum;
         this.userNum = userNum;
         this.stateTime = stateTime;
@@ -43,7 +43,7 @@ public class State {
         this.isRecentArea = isRecentArea;
         this.isRecentCountry = isRecentCountry;
         this.isRecentPeople = isRecentPeople;
-        this.symptom = symptom;
+        this.isSymptom = isSymptom;
         this.isAbnormal = isAbnormal;
         this.healthCodeType = healthCodeType;
         this.isOutSchool = isOutSchool;
@@ -131,11 +131,11 @@ public class State {
     }
 
     public boolean isSymptom() {
-        return symptom;
+        return isSymptom;
     }
 
     public void setSymptom(boolean symptom) {
-        this.symptom = symptom;
+        isSymptom = symptom;
     }
 
     public boolean isAbnormal() {

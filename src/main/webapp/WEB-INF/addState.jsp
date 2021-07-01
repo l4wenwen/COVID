@@ -42,14 +42,9 @@
     否<input type="radio" name="isRecentPeople" value="0">
     是<input type="radio" name="isRecentPeople" value="1">
     <br />
-    今日是否有以下相关症状？<br />
-    无<input type="checkbox" name="symptom" value="0">
-    乏力<input type="checkbox" name="symptom" value="1">
-    干咳<input type="checkbox" name="symptom" value="2">
-    鼻塞<input type="checkbox" name="symptom" value="3">
-    流涕<input type="checkbox" name="symptom" value="4">
-    咽痛<input type="checkbox" name="symptom" value="5">
-    腹泻<input type="checkbox" name="symptom" value="6">
+    今日是否有以下相关症状(乏力、干咳 、鼻塞、流涕、咽痛、腹泻)？<br />
+    无<input type="radio" name="symptom" value="0">
+    有<input type="radio" name="symptom" value="1">
     <br />
     今日是否存在其他个人健康异常情况？<br />
     否<input type="radio" name="isAbnormal" value="0">

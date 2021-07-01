@@ -11,6 +11,10 @@
     <title>stateList</title>
 </head>
 <body>
-
+<form action="/state/list" method="post">
+    开始日期：<input type="date" name="startTime" checked/>
+    结束日期：<input type="date" name="endTime" checked/>
+    <input type="submit" value="提交">
+</form>
 </body>
 </html>
