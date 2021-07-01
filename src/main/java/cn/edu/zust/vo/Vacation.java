@@ -31,6 +31,17 @@ public class Vacation {
         this.state = state;
     }
 
+    public Vacation(Integer vacationNum, String reason, String startTime, String endTime, String requestTime, String way, String userNum, Integer state) {
+        this.vacationNum = vacationNum;
+        this.reason = reason;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.requestTime = requestTime;
+        this.way = way;
+        this.userNum = userNum;
+        this.state = state;
+    }
+
     public Integer getVacationNum() {
         return vacationNum;
     }

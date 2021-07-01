@@ -37,11 +37,11 @@
                     <td>${vacation.state}</td>
                     <td>${vacation.requestTime}</td>
                     <c:if test="${sessionScope.user.userType == 2 && vacation.state == 0}">
-                        <td><a href="${pageContext.request.contextPath}/vacation/revoke?vid=${vacation.id}&user_id=${vacation.userId}">撤回</a></td>
+                        <td><a href="${pageContext.request.contextPath}/vacation/revoke?vid=${vacation.vacationNum}&user_id=${vacation.userNum}">撤回</a></td>
                     </c:if>
                     <c:if test="${sessionScope.user.userType == 1 && vacation.state == 0}">
-                        <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.id}&operation=2">同意</a></td>
-                        <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.id}&operation=1">拒绝</a></td>
+                        <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.vacationNum}&operation=2">同意</a></td>
+                        <td><a href="${pageContext.request.contextPath}/vacation/operate?vid=${vacation.vacationNum}&operation=1">拒绝</a></td>
                     </c:if>
                 </tr>
             </c:forEach>

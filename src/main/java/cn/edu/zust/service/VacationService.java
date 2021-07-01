@@ -10,59 +10,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VacationService {
-    public List<Vacation> excuteVacationQuery(String sql) throws SQLException {
+    public List<Vacation> executeVacationQuery(String sql) throws SQLException {
         ResultSet rs = DBUtil.select(sql);
         List<Vacation> vacations = new ArrayList<>();
         while(rs.next()) {
-            int id = rs.getInt("vid");
-            String reason = rs.getString("vreason");
-            String startTime = rs.getString("vstart_time");
-            String endTime = rs.getString("vend_time");
-            String requestTime = rs.getString("vrequest_time");
-            String way = rs.getString("vtransport");
-            String userId = rs.getString("user_id");
-            String userName = rs.getString("user_name");
-            int state = rs.getInt("vstate");
-            Vacation vacation = new Vacation(id, reason, startTime, endTime, requestTime, way, userId, userName, state);
+            int id = rs.getInt("vacationNum");
+            String reason = rs.getString("reason");
+            String startTime = rs.getString("startTime");
+            String endTime = rs.getString("endTime");
+            String requestTime = rs.getString("requestTime");
+            String way = rs.getString("way");
+            String userId = rs.getString("userNum");
+//            String userName = rs.getString("user_name");
+            int state = rs.getInt("state");
+            Vacation vacation = new Vacation(id, reason, startTime, endTime, requestTime, way, userId, state);
             vacations.add(vacation);
         }
         return vacations;
     }
 
-    public List<Vacation> getVacationListById(String user_id) throws SQLException {
-        String sql = "SELECT vacation.*, user.user_name FROM vacation, user WHERE vacation.user_id = user.user_id and user.user_id = " + user_id;
-        return excuteVacationQuery(sql);
+    public List<Vacation> getVacationListById(String userNum) throws SQLException {
+        String sql = "SELECT vacation.*, user.userName FROM vacation, user WHERE vacation.userNum = user.userNum and user.userNum = " + userNum;
+        return executeVacationQuery(sql);
     }
 
-    public List<Vacation> getVacationListByDepId(int depNo) throws SQLException {
-        String sql = "SELECT vacation.*, user_name FROM vacation, (SELECT user_id, user_name FROM user WHERE dept_no = " +
-                depNo + ") t WHERE t.user_id = vacation.user_id";
-        return excuteVacationQuery(sql);
+    public List<Vacation> getVacationListByDepId(int collegeNum) throws SQLException {
+        String sql = "SELECT vacation.*, userName FROM vacation, (SELECT userNum, userName FROM user WHERE collegeNum = " +
+                collegeNum + ") t WHERE t.userNum = vacation.userNum";
+        return executeVacationQuery(sql);
     }
 
     public boolean submitVacationRequest(User user, Vacation vacation) {
-        String sql = "INSERT INTO vacation(vreason, vstart_time, vend_time, vstate, user_id, vrequest_time, vtransport) VALUES('" + vacation.getReason()
+        String sql = "INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way) VALUES('" + vacation.getReason()
                 + "','" + vacation.getStartTime() + "','" + vacation.getEndTime() + "','" +
                 vacation.getState() + "','" + user.getUserNum() + "','" + vacation.getRequestTime() + "','" +
                 vacation.getWay() + "')";
         return DBUtil.update(sql);
     }
 
-    public boolean revokeRequest(String userId, String vid) throws SQLException {
-        String sqlUpdate = "DELETE FROM vacation WHERE user_id=" + userId + " and vid=" + vid;
-        String sqlCheck = "SELECT vstate FROM vacation WHERE user_id=" + userId + " and vid=" + vid;
+    public boolean revokeRequest(String userNum, String vacationNum) throws SQLException {
+        String sqlUpdate = "DELETE FROM vacation WHERE userNum=" + userNum + " and vid=" + vacationNum;
+        String sqlCheck = "SELECT state FROM vacation WHERE userNum=" + userNum + " and vid=" + vacationNum;
         ResultSet rs = DBUtil.select(sqlCheck);
         boolean isRevoked = false;
         if (rs != null && rs.next()) {
-            int state = rs.getInt("vstate");
+            int state = rs.getInt("state");
             if (state == Vacation.STATE_PENDING)
                 isRevoked = DBUtil.update(sqlUpdate);
         }
         return isRevoked;
     }
 
-    public boolean performDecision(int vid, int operation) {
-        String sql = "UPDATE vacation SET vstate = " + operation + " WHERE vid = " + vid;
+    public boolean performDecision(int vacationNum, int operation) {
+        String sql = "UPDATE vacation SET state = " + operation + " WHERE vacationNum = " + vacationNum;
         return DBUtil.update(sql);
     }
 }

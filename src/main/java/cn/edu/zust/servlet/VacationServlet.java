@@ -71,7 +71,7 @@ public class VacationServlet extends BaseServlet {
         if (currentUser.getUserType() == 2) {
             vacations = vacationService.getVacationListById(currentUser.getUserNum());  //如果是学生，则获取自己的请假请求
         } else {
-            vacations = vacationService.getVacationListByDepId(currentUser.getDepartmentNum());   //如果是老师，则通过学院ID获取请求
+            vacations = vacationService.getVacationListByDepId(currentUser.getCollegeNum());   //如果是老师，则通过学院ID获取请求
         }
         request.setAttribute("vacations", vacations);
         request.getRequestDispatcher("/WEB-INF/vacationList.jsp").forward(request, response);

@@ -17,13 +17,17 @@ public class UserServlet extends BaseServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //doGet跳转至相应界面
         String methodName = getMethod(request.getRequestURI());
-        try {
-            Method method = getClass().getDeclaredMethod(methodName,
-                    HttpServletRequest.class, HttpServletResponse.class);
-        } catch (NoSuchMethodException e) {
-            methodName = "error";
+        if ("logout".equals(methodName) || "userHome".equals(methodName)) {
+            doPost(request, response);
+        } else {
+            try {
+                Method method = getClass().getDeclaredMethod(methodName,
+                        HttpServletRequest.class, HttpServletResponse.class);
+            } catch (NoSuchMethodException e) {
+                methodName = "error";
+            }
+            request.getRequestDispatcher("/WEB-INF/" + methodName + ".jsp").forward(request, response);
         }
-        request.getRequestDispatcher("/WEB-INF/" + methodName + ".jsp").forward(request, response);
     }
 
     public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
@@ -42,7 +46,7 @@ public class UserServlet extends BaseServlet {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/index.jsp");
+            request.getRequestDispatcher("/user/userHome").forward(request, response);
         }
     }
 
@@ -64,5 +68,26 @@ public class UserServlet extends BaseServlet {
             directURI += "register.jsp";
         }
         request.getRequestDispatcher(directURI).forward(request, response);
+    }
+
+    public void userHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = getCurrentUser(request);
+        String directURI = "/WEB-INF/";
+        if (user.getUserType() == 0)
+            directURI += "adminHome.jsp";
+        else if (user.getUserType() == 1)
+            directURI += "teacherHome.jsp";
+        else
+            directURI += "studentHome.jsp";
+        request.getRequestDispatcher(directURI).forward(request, response);
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("/user/login");
+    }
+
+    public User getCurrentUser(HttpServletRequest request) {
+        return (User) request.getSession().getAttribute("user");
     }
 }
