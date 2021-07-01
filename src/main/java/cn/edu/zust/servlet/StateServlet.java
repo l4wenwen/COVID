@@ -71,7 +71,7 @@ public class StateServlet extends BaseServlet {
             return;
         }
         State state = new State(stateNum, userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine,
-                isRecentArea, isRecentCountry, isRecentPeople, symptom, isAbnormal, isOutSchool, isOutCity);
-
+                isRecentArea, isRecentCountry, isRecentPeople, symptom, isAbnormal, healthCodeType, isOutSchool, isOutCity);
+        stateService.addState(state);
     }
 }

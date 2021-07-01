@@ -21,7 +21,6 @@ public class VacationService {
             String requestTime = rs.getString("requestTime");
             String way = rs.getString("way");
             String userId = rs.getString("userNum");
-//            String userName = rs.getString("user_name");
             int state = rs.getInt("state");
             Vacation vacation = new Vacation(id, reason, startTime, endTime, requestTime, way, userId, state);
             vacations.add(vacation);
