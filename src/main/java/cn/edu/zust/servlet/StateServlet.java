@@ -1,5 +1,6 @@
 package cn.edu.zust.servlet;
 
+import cn.edu.zust.util.DBUtil;
 import cn.edu.zust.vo.State;
 import cn.edu.zust.vo.User;
 import cn.edu.zust.vo.Vacation;
@@ -40,25 +41,19 @@ public class StateServlet extends BaseServlet {
         System.out.println("request: ");
         User user = (User) request.getSession().getAttribute("user");
         String userNum = user.getUserNum();
-        System.out.println("userNum = " + userNum);
         String stateTime = getTime();
         boolean isTemperature = Boolean.parseBoolean(request.getParameter("isTemperature"));
-        System.out.println("isTemperature = " + isTemperature);
         boolean isCovid = Boolean.parseBoolean(request.getParameter("isCovid"));
         boolean isLikeCovid = Boolean.parseBoolean(request.getParameter("isLikeCovid"));
-        System.out.println("isLikeCovid = " + isLikeCovid);
         Integer quarantine = Integer.parseInt(request.getParameter("quarantine"));
-        System.out.println("quarantine = " + quarantine);
         boolean isRecentArea = Boolean.parseBoolean(request.getParameter("isRecentArea"));
         boolean isRecentCountry = Boolean.parseBoolean(request.getParameter("isRecentCountry"));
         boolean isRecentPeople = Boolean.parseBoolean(request.getParameter("isRecentPeople"));
         boolean isSymptom = Boolean.parseBoolean(request.getParameter("symptom"));
         boolean isAbnormal = Boolean.parseBoolean(request.getParameter("isAbnormal"));
-        System.out.println("isAbnormal = " + isAbnormal);
         Integer healthCodeType = Integer.parseInt(request.getParameter("healthCodeType"));
         boolean isOutSchool = Boolean.parseBoolean(request.getParameter("isOutSchool"));
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
-        System.out.println("isOutCity = " + isOutCity);
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
             System.out.println("输入不能为空。");
@@ -79,15 +74,19 @@ public class StateServlet extends BaseServlet {
     }
 
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        System.out.println("list: ");
         String startTime = request.getParameter("startTime");
+        System.out.println("startTime = " + startTime);
         String endTime = request.getParameter("endTime");
-        String collegeName = request.getParameter("collegeName");
+        System.out.println("endTime = " + endTime);
+        User user = (User) request.getSession().getAttribute("user");
+        Integer userNum = Integer.parseInt(user.getUserNum());
+        String collegeName = userService.getCollegeNameByUserNum(userNum);
         if (!isGoodString(startTime) || !isGoodString(endTime) || !isGoodString(collegeName)) {
             request.setAttribute("message", "输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
             return;
         }
-        User user = (User) request.getSession().getAttribute("user");
         List<State> states = stateService.selectState(startTime, endTime, collegeName, user.getUserType(), user.getUserNum());
         request.setAttribute("states", states);
         request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);

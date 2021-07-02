@@ -11,16 +11,6 @@
 <head>
     <title>addState</title>
     <%@ include file="template/import.jsp" %>
-<%--    <script type="text/javascript" language="javascript">--%>
-<%--        /*------判断radio是否有选中，获取选中的值--------*/--%>
-<%--        $(function () {--%>
-<%--            $("input").click(function () {--%>
-<%--                if ($(this).attr("checked")) {--%>
-<%--                    alert("选中了");--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-<%--    </script>--%>
 </head>
 <body>
 <jsp:include page="template/navigate.jsp">
@@ -28,7 +18,7 @@
 </jsp:include>
 <div class="container">
     <jsp:include page="template/header.jsp" >
-        <jsp:param name="position" value="Ask For Leave"/>
+        <jsp:param name="position" value="State Request"/>
         <jsp:param name="userName" value="${sessionScope.user.userName}"/>
     </jsp:include>
     <div class="content">
