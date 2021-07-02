@@ -3,6 +3,7 @@ package cn.edu.zust.service;
 import cn.edu.zust.util.DBUtil;
 import cn.edu.zust.vo.User;
 import cn.edu.zust.vo.UserProfile;
+import cn.edu.zust.vo.Vacation;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
+    public List<User> executeUserQuery(String sql) throws SQLException {
+        ResultSet rs = DBUtil.select(sql);
+        List<User> users = new ArrayList<>();
+        while(rs.next()) {
+            String userNum = rs.getString("userNum");
+            String userName = rs.getString("userName");
+            int userType  = rs.getInt("userType");
+            boolean sex = rs.getBoolean("sex");
+            int collegeNum = rs.getInt("collegeNum");
+            int majorNum = rs.getInt("majorNum");
+            int classNum = rs.getInt("classNum");
+            User user = new User(userName, userNum, sex, collegeNum, majorNum, "", classNum, userType);
+            users.add(user);
+        }
+        return users;
+    }
+
     public User userLogin(String userNum, String password) throws SQLException {
         String sql = "SELECT * FROM user WHERE userNum = '" + userNum + "' and password = '" + password + "'";
         ResultSet rs = DBUtil.select(sql);
@@ -39,17 +57,12 @@ public class UserService {
 
     public List<User> getAllUsers() throws SQLException {
         String sql = "SELECT * FROM user WHERE userType=2";
-        List<User> users = new ArrayList<>();
-        ResultSet rs = DBUtil.select(sql);
-        while(rs.next()) {
-            String userNum = rs.getString("userNum");
-            String userName = rs.getString("userName");
-            int userType = rs.getInt("userType");
-            boolean sex = rs.getInt("sex") == 1;
-            User user = new User(userName, userNum, sex, 0, 0, "", 0, userType);
-            users.add(user);
-        }
-        return users;
+        return executeUserQuery(sql);
+    }
+
+    public List<User> getAllTeachers() throws SQLException {
+        String sql = "SELECT * FROM user WHERE userType=1";
+        return executeUserQuery(sql);
     }
 
     public String getCollegeNameById(Integer collegeNum) throws SQLException {
@@ -89,5 +102,23 @@ public class UserService {
     public boolean updatePassword(String userNum, String pwd) {
         String sql = "UPDATE user SET password='" + pwd + "' WHERE userNum='" + userNum + "'";
         return DBUtil.update(sql) == 1;
+    }
+
+    public Integer getStudentNumber() throws SQLException {
+        String sql = "SELECT COUNT(*) num FROM user WHERE userType = 2";
+        ResultSet rs = DBUtil.select(sql);
+        Integer studentNum = 0;
+        if (rs != null && rs.next())
+            studentNum = rs.getInt("num");
+        return studentNum;
+    }
+
+    public Integer getTeacherNumber() throws SQLException {
+        String sql = "SELECT COUNT(*) num FROM user WHERE userType = 1";
+        ResultSet rs = DBUtil.select(sql);
+        Integer teacherNum = 0;
+        if (rs != null && rs.next())
+            teacherNum = rs.getInt("num");
+        return teacherNum;
     }
 }

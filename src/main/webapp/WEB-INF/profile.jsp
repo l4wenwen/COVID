@@ -31,6 +31,7 @@
             学院：${requestScope.userProfile.collegeName}<br/>
             专业：${requestScope.userProfile.majorName}<br/>
             类型：${requestScope.userProfile.userType}<br/>
+            手机号码：<input type="text" disabled><a href="#">申请修改</a> <br/>
             密码：<input type="password" id="pwd" />
             确认密码：<input type="password" id="repwd" />
             <button id="changePwd">更改密码</button>

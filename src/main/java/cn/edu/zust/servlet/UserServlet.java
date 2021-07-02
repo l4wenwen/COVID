@@ -23,7 +23,8 @@ public class UserServlet extends BaseServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
-        if ("logout".equals(methodName) || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)) {
+        if ("logout".equals(methodName) || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)
+            || "manager".equals(methodName) || "userInfo".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -91,6 +92,9 @@ public class UserServlet extends BaseServlet {
 
     }
 
+    public void manager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/userManager.jsp").forward(request, response);
+    }
     public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         UserProfile userProfile = userService.getUserProfile(getCurrentUser(request));
         request.setAttribute("userProfile", userProfile);
@@ -98,11 +102,27 @@ public class UserServlet extends BaseServlet {
     }
 
     public void userinfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        response.setCharacterEncoding("UTF-8");
         List<User> users = userService.getAllUsers();
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);
+    }
+
+    public void teacherlist(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        List<User> users = userService.getAllTeachers();
+        String json = convertUserToJSON(users);
+        PrintWriter out = response.getWriter();
+        out.print(json);
+    }
+
+
+
+    public void userInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        Integer studentNum = userService.getStudentNumber();
+        Integer teacherNum = userService.getTeacherNumber();
+        request.setAttribute("studentNum", studentNum);
+        request.setAttribute("teacherNum", teacherNum);
+        request.getRequestDispatcher("/WEB-INF/userManager.jsp").forward(request, response);
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -49,8 +49,8 @@ public class VacationService {
     }
 
     public boolean revokeRequest(String userNum, String vacationNum) throws SQLException {
-        String sqlUpdate = "DELETE FROM vacation WHERE userNum=" + userNum + " and vid=" + vacationNum;
-        String sqlCheck = "SELECT state FROM vacation WHERE userNum=" + userNum + " and vid=" + vacationNum;
+        String sqlUpdate = "DELETE FROM vacation WHERE userNum=" + userNum + " and vacationNum=" + vacationNum;
+        String sqlCheck = "SELECT state FROM vacation WHERE userNum=" + userNum + " and vacationNum=" + vacationNum;
         ResultSet rs = DBUtil.select(sqlCheck);
         boolean isRevoked = false;
         if (rs != null && rs.next()) {

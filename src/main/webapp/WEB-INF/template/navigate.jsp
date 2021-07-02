@@ -13,6 +13,9 @@
         <c:if test="${param.type != 0}">
             <a href="${pageContext.request.contextPath}/vacation/list"><li>请假情况</li></a>
         </c:if>
+        <c:if test="${param.type == 0}">
+            <a href="${pageContext.request.contextPath}/user/manager"><li>用户管理</li></a>
+        </c:if>
         <c:if test="${param.type == 2}">
             <a href="${pageContext.request.contextPath}/state/request"><li>每日打卡</li></a>
             <a href="${pageContext.request.contextPath}/state/list"><li>打卡情况</li></a>
