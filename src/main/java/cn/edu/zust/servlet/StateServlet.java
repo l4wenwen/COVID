@@ -41,7 +41,7 @@ public class StateServlet extends BaseServlet {
         System.out.println("request: ");
         User user = (User) request.getSession().getAttribute("user");
         String userNum = user.getUserNum();
-        String stateTime = getTime();
+        String stateTime = getDate();
         boolean isTemperature = Boolean.parseBoolean(request.getParameter("isTemperature"));
         boolean isCovid = Boolean.parseBoolean(request.getParameter("isCovid"));
         boolean isLikeCovid = Boolean.parseBoolean(request.getParameter("isLikeCovid"));
@@ -54,11 +54,13 @@ public class StateServlet extends BaseServlet {
         Integer healthCodeType = Integer.parseInt(request.getParameter("healthCodeType"));
         boolean isOutSchool = Boolean.parseBoolean(request.getParameter("isOutSchool"));
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
+        System.out.println("isOutCity = " + isOutCity);
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
             System.out.println("输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
         } else {
+            stateService.delState(userNum);
             State state = new State(userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine,
                     isRecentArea, isRecentCountry, isRecentPeople, isSymptom, isAbnormal, healthCodeType, isOutSchool, isOutCity);
             Integer cnt = stateService.addState(state);
@@ -74,11 +76,8 @@ public class StateServlet extends BaseServlet {
     }
 
     public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        System.out.println("list: ");
         String startTime = request.getParameter("startTime");
-        System.out.println("startTime = " + startTime);
         String endTime = request.getParameter("endTime");
-        System.out.println("endTime = " + endTime);
         User user = (User) request.getSession().getAttribute("user");
         Integer userNum = Integer.parseInt(user.getUserNum());
         String collegeName = userService.getCollegeNameByUserNum(userNum);
