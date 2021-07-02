@@ -12,11 +12,14 @@ $(document).ready(function() {
                         appendstr += "<td>" + res[index]["userName"] + "</td>";
                         appendstr += "<td>" + res[index]["userNum"] + "</td>";
                         appendstr += "<td>" + res[index]["sex"] + "</td>";
+                        appendstr += "<td>" + res[index]["state"] + "</td>";
+                        appendstr += "<td>" + res[index]["telephone"] + "</td>";
                         appendstr += "</tr>";
                         $(".chart").append(appendstr);
                     }
                 },
                 error: function (error) {
+                    $(".chart .item").remove();
                     console.log(error);
                 },
                 beforeSend: function () {

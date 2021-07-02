@@ -115,8 +115,6 @@ public class UserServlet extends BaseServlet {
         out.print(json);
     }
 
-
-
     public void userInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Integer studentNum = userService.getStudentNumber();
         Integer teacherNum = userService.getTeacherNumber();

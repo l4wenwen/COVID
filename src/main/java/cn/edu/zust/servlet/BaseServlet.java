@@ -72,7 +72,7 @@ public class BaseServlet extends HttpServlet {
     protected String convertUserToJSON(List<User> users) {
         StringBuilder json = new StringBuilder("[");
         for(User user : users) {
-            json.append("{\"userName\": \"").append(user.getUserName()).append("\", \"userNum\": \"").append(user.getUserNum()).append("\", \"sex\": \"").append(user.isSex() ? "男" : "女").append("\"},");
+            json.append("{\"userName\": \"").append(user.getUserName()).append("\", \"userNum\": \"").append(user.getUserNum()).append("\", \"sex\": \"").append(user.isSex() ? "男" : "女").append("\", \"state\": \"").append(user.getState()==null?"未填写":user.getState()).append("\", \"telephone\": \"").append(user.getTelephone()==null?"未填写":user.getTelephone()).append("\"},");
         }
         json.delete(json.lastIndexOf(","), json.lastIndexOf(",")+1);
         json.append("]");

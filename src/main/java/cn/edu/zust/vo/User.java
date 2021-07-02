@@ -9,6 +9,8 @@ public class User {
     private String userName;
     private String password;
     private boolean sex;
+    private String telephone;
+    private String state;
 
     public User() {
     }
@@ -89,6 +91,22 @@ public class User {
 
     public void setClassNum(Integer classNum) {
         this.classNum = classNum;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     /**

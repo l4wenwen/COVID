@@ -24,14 +24,14 @@ public class VacationServlet extends BaseServlet {
         if (!"request".equals(methodName)) {
             doPost(request, response);
         } else {
-            try {
-                Method method = getClass().getDeclaredMethod(methodName,
-                        HttpServletRequest.class, HttpServletResponse.class);
-                methodName = "vacation" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);   //将请求方法加上vacation前缀以访问jsp文件
-            } catch (NoSuchMethodException e) {
-                methodName = "error";
-            }
-            request.getRequestDispatcher("/WEB-INF/" + methodName + ".jsp").forward(request, response);
+//            try {
+//                Method method = getClass().getDeclaredMethod(methodName,
+//                        HttpServletRequest.class, HttpServletResponse.class);
+//                methodName = "vacation" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);   //将请求方法加上vacation前缀以访问jsp文件
+//            } catch (NoSuchMethodException e) {
+//                methodName = "error";
+//            }
+            request.getRequestDispatcher("/WEB-INF/vacationList.jsp").forward(request, response);
         }
     }
 
@@ -55,7 +55,7 @@ public class VacationServlet extends BaseServlet {
                 response.sendRedirect("/vacation/list");
             } else {
                 request.setAttribute("message", "提交请求失败。");
-                request.getRequestDispatcher("/vacation/request").forward(request, response);
+                request.getRequestDispatcher("/vacation/list").forward(request, response);
             }
         }
     }

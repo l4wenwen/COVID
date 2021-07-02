@@ -56,8 +56,24 @@ public class UserService {
     }
 
     public List<User> getAllUsers() throws SQLException {
-        String sql = "SELECT * FROM user WHERE userType=2";
-        return executeUserQuery(sql);
+        String sql = "SELECT userName, userNum, sex, CASE isCovid WHEN 1 THEN '高危' WHEN 0 THEN '正常' ELSE '未填写' END state, " +
+                "telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
+                "WHERE a.userType = 2";
+        ResultSet rs = DBUtil.select(sql);
+        List<User> users = new ArrayList<>();
+        while(rs.next()) {
+            String userNum = rs.getString("userNum");
+            String userName = rs.getString("userName");
+            boolean sex = rs.getBoolean("sex");
+            String state = rs.getString("state");
+            User user = new User();
+            user.setUserNum(userNum);
+            user.setUserName(userName);
+            user.setSex(sex);
+            user.setState(state);
+            users.add(user);
+        }
+        return users;
     }
 
     public List<User> getAllTeachers() throws SQLException {

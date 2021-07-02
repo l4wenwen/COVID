@@ -22,9 +22,15 @@
             <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
-            <div class="state">
-
-            </div>
+            <c:if test="${sessionScope.user.userType == 2}">
+                <form action="${pageContext.request.contextPath}/vacation/request" method="post">
+                    <label>理由：<input type="text" name="reason" /></label> <br />
+                    <label>请假日期：<input type="datetime-local" name="startTime" /></label> <br />
+                    <label>返校日期：<input type="datetime-local" name="endTime" /></label> <br />
+                    <label>交通工具：<input type="text" name="transport"></label> <br />
+                    <input type="submit" value="提交" />
+                </form>
+            </c:if>
             <table class="chart">
                 <tr class="title">
                     <th>姓名</th>
