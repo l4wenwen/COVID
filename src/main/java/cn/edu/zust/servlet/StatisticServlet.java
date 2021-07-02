@@ -14,21 +14,15 @@ import java.util.List;
 
 @WebServlet(name = "statisticServlet", urlPatterns = "statistic/*")
 public class StatisticServlet extends BaseServlet {
-    protected User currentUser;
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (currentUser == null) currentUser = getCurrentUser(request);
         doPost(request, response);
     }
 
     public void all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         Statistic statistic = statisticService.getAllStatistic(getDate());
         request.setAttribute("statistic", statistic);
-        String directURI = "/WEB-INF/";
-        if (currentUser.getUserType() == 0) directURI += "adminHome.jsp";
-        else directURI += "teacherHome.jsp";
-        request.getRequestDispatcher(directURI).forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/userHome.jsp").forward(request, response);
     }
 
     public void filled(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

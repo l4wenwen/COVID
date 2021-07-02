@@ -11,11 +11,13 @@
 <head>
     <title>studentHome</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ include file="template/import.jsp" %>
+    <jsp:include page="template/import.jsp" />
 </head>
 <body>
 <%request.setCharacterEncoding("UTF-8");%>
-
+<c:if test="${requestScope.statistic == null}">
+    <c:redirect url="/statistic/all" />
+</c:if>
 <jsp:include page="template/navigate.jsp">
     <jsp:param name="type" value="${sessionScope.user.userType}"/>
 </jsp:include>
@@ -26,9 +28,9 @@
     </jsp:include>
     <div class="context">
         <div class="content">
-            <div class="state">
-                ${sessionScope.user.userType}
-            </div>
+            <c:if test="${sessionScope.user.userType != 2}">
+                <jsp:include page="template/state.jsp" />
+            </c:if>
             <table class="chart">
                 <tr class="title">
                     <th>姓名</th>

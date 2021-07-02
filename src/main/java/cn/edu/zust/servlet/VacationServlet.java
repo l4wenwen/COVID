@@ -16,14 +16,11 @@ import java.util.List;
 
 @WebServlet(name = "vacationServlet", urlPatterns = "vacation/*")
 public class VacationServlet extends BaseServlet {
-    protected User currentUser;
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = getMethod(request.getRequestURI());
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        if (currentUser == null) currentUser = getCurrentUser(request);
         if (!"request".equals(methodName)) {
             doPost(request, response);
         } else {
@@ -40,7 +37,7 @@ public class VacationServlet extends BaseServlet {
 
     //提交离校请求
     public void request(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (currentUser.getUserType() != 2) {
+        if (getCurrentUser(request).getUserType() != 2) {
             response.sendRedirect("/user/userHome");
             return;
         }
@@ -53,8 +50,8 @@ public class VacationServlet extends BaseServlet {
             request.setAttribute("message", "输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/vacationRequest.jsp").forward(request, response);
         } else {
-            Vacation vacation = new Vacation(0, reason, startTime, endTime, getTime(), transport, currentUser.getUserNum(), Vacation.STATE_PENDING);
-            if (vacationService.submitVacationRequest(currentUser, vacation)) {
+            Vacation vacation = new Vacation(0, reason, startTime, endTime, getTime(), transport, getCurrentUser(request).getUserNum(), Vacation.STATE_PENDING);
+            if (vacationService.submitVacationRequest(getCurrentUser(request), vacation)) {
                 response.sendRedirect("/vacation/list");
             } else {
                 request.setAttribute("message", "提交请求失败。");
@@ -65,6 +62,7 @@ public class VacationServlet extends BaseServlet {
 
     public void list(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         List<Vacation> vacations;
+        User currentUser = getCurrentUser(request);
         if (currentUser.getUserType() == 2) {
             vacations = vacationService.getVacationListById(currentUser.getUserNum());  //如果是学生，则获取自己的请假请求
         } else {
@@ -86,7 +84,7 @@ public class VacationServlet extends BaseServlet {
     public void operate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String vid = request.getParameter("vid");
         String operation = request.getParameter("operation");
-        if (currentUser.getUserType() == 0)
+        if (getCurrentUser(request).getUserType() == 0)
             response.sendRedirect("/user/userHome");
         else {
             vacationService.performDecision(Integer.parseInt(vid), Integer.parseInt(operation));

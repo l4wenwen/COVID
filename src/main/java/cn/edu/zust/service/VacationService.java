@@ -30,7 +30,7 @@ public class VacationService {
     }
 
     public List<Vacation> getVacationListById(String userNum) throws SQLException {
-        String sql = "SELECT vacation.*, user.userName FROM vacation, user WHERE vacation.userNum = user.userNum and user.userNum = " + userNum;
+        String sql = "SELECT vacation.*, user.userName FROM vacation, user WHERE vacation.userNum = user.userNum and user.userNum = '" + userNum + "'";
         return executeVacationQuery(sql);
     }
 

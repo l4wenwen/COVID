@@ -7,7 +7,7 @@ $(document).ready(function() {
                 type: "POST",
                 success: function (res) {
                     $(".chart .item").remove();
-                    for(let index in res) {
+                    for (let index in res) {
                         let appendstr = "<tr class='item'>"
                         appendstr += "<td>" + res[index]["userName"] + "</td>";
                         appendstr += "<td>" + res[index]["userNum"] + "</td>";
@@ -19,11 +19,11 @@ $(document).ready(function() {
                 error: function (error) {
                     console.log(error);
                 },
-                beforeSend : function () {
-                    $(".loader").css("display","block");
+                beforeSend: function () {
+                    $(".loader").css("display", "block");
                 },
                 complete: function () {
-                    $(".loader").css("display","none");
+                    $(".loader").css("display", "none");
                 }
             });
         }
@@ -51,6 +51,8 @@ $(document).ready(function() {
                     console.log(error);
                 },
                 complete: function () {
+                    $("#pwd").val("");
+                    $("#repwd").val("");
                     $("#hide").css("display","block");
                 }
             });
