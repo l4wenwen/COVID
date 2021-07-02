@@ -13,14 +13,18 @@ public class DBUtil {
     }
 
     public static boolean openConnection(String url, String userName, String pwd) {
+        System.out.print("openConnection:");
         try {
-            if (con != null && con.isClosed())
+            if (con != null && con.isClosed()) {
                 con.close();
+            }
             con = DriverManager.getConnection(url, userName, pwd);
+            System.out.println("success");
             return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             con = null;
+            System.out.println("fail");
             return false;
         }
     }

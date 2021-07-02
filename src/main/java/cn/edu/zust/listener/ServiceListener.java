@@ -15,9 +15,9 @@ import javax.servlet.annotation.WebListener;
 public class ServiceListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        String url = "jdbc:mysql://127.0.0.1:3306/covid";
+        String url = "jdbc:mysql://localhost:3306/COVID?useSSL=false";
         String userName = "root";
-        String pwd = "root";
+        String pwd = "Meul)1)3";
         DBUtil.openConnection(url, userName, pwd);
         UserService userService = new UserService();
         VacationService vacationService = new VacationService();
