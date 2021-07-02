@@ -21,6 +21,8 @@ public class VacationServlet extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = getMethod(request.getRequestURI());
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         if (currentUser == null) currentUser = getCurrentUser(request);
         if (!"request".equals(methodName)) {
             doPost(request, response);

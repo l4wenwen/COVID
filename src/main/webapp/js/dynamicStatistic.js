@@ -18,6 +18,12 @@ $(document).ready(function() {
                 },
                 error: function (error) {
                     console.log(error);
+                },
+                beforeSend : function () {
+                    $(".loader").css("display","block");
+                },
+                complete: function () {
+                    $(".loader").css("display","none");
                 }
             });
         }

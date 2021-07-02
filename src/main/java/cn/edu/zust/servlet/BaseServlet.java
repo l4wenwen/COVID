@@ -37,6 +37,7 @@ public class BaseServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //doPost调用方法
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
         try {
             Method method = getClass().getDeclaredMethod(methodName,
