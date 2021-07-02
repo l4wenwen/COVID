@@ -7,43 +7,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>addState</title>
     <%@ include file="template/import.jsp" %>
-<%--    <script type="text/javascript" language="javascript">--%>
-<%--        /*------判断radio是否有选中，获取选中的值--------*/--%>
-<%--        $(function () {--%>
-<%--            $("input").click(function () {--%>
-<%--                if ($(this).attr("checked")) {--%>
-<%--                    alert("选中了");--%>
-<%--                }--%>
-<%--            });--%>
-<%--        });--%>
-<%--    </script>--%>
 </head>
+<%request.setCharacterEncoding("UTF-8");%>
 <body>
 <jsp:include page="template/navigate.jsp">
     <jsp:param name="type" value="${sessionScope.user.userType}"/>
 </jsp:include>
 <div class="container">
     <jsp:include page="template/header.jsp" >
-        <jsp:param name="position" value="Ask For Leave"/>
+        <jsp:param name="position" value="State Request"/>
         <jsp:param name="userName" value="${sessionScope.user.userName}"/>
     </jsp:include>
     <div class="content">
         <form action="${pageContext.request.contextPath}/state/request" method="post">
             今日体温是否正常？<br />
-            否<input type="radio" name="isTemperature" value="0" checked>
-            是<input type="radio" name="isTemperature" value="1">
+            否<input type="radio" name="isTemperature" value="false" checked>
+            是<input type="radio" name="isTemperature" value="true">
             <br />
             是否确诊为新冠？<br />
-            否<input type="radio" name="isCovid" value="0" checked>
-            是<input type="radio" name="isCovid" value="1">
+            否<input type="radio" name="isCovid" value="false" checked>
+            是<input type="radio" name="isCovid" value="true">
             <br />
             是否疑似为新冠？<br />
-            否<input type="radio" name="isLikeCovid" value="0" checked>
-            是<input type="radio" name="isLikeCovid" value="1">
+            否<input type="radio" name="isLikeCovid" value="false" checked>
+            是<input type="radio" name="isLikeCovid" value="true">
             <br />
             当前的隔离状态？<br />
             未曾隔离<input type="radio" name="quarantine" value="0" checked>
@@ -52,24 +44,24 @@
             正在集中隔离<input type="radio" name="quarantine" value="3">
             <br />
             本人同住亲友近14天内是否途径或停留疫情中高风险地区？<br />
-            否<input type="radio" name="isRecentArea" value="0" checked>
-            是<input type="radio" name="isRecentArea" value="1">
+            否<input type="radio" name="isRecentArea" value="false" checked>
+            是<input type="radio" name="isRecentArea" value="true">
             <br />
             近14天是否曾在国(境)外旅行、居住？<br />
-            否<input type="radio" name="isRecentCountry" value="0" checked>
-            是<input type="radio" name="isRecentCountry" value="1">
+            否<input type="radio" name="isRecentCountry" value="false" checked>
+            是<input type="radio" name="isRecentCountry" value="true">
             <br />
             近14天是否曾接触过确诊或疑似新冠病例？<br />
-            否<input type="radio" name="isRecentPeople" value="0" checked>
-            是<input type="radio" name="isRecentPeople" value="1">
+            否<input type="radio" name="isRecentPeople" value="false" checked>
+            是<input type="radio" name="isRecentPeople" value="true">
             <br />
             今日是否有以下相关症状(乏力、干咳 、鼻塞、流涕、咽痛、腹泻)？<br />
-            无<input type="radio" name="symptom" value="0" checked>
-            有<input type="radio" name="symptom" value="1">
+            无<input type="radio" name="symptom" value="false" checked>
+            有<input type="radio" name="symptom" value="true">
             <br />
             今日是否存在其他个人健康异常情况？<br />
-            否<input type="radio" name="isAbnormal" value="0" checked>
-            是<input type="radio" name="isAbnormal" value="1">
+            否<input type="radio" name="isAbnormal" value="false" checked>
+            是<input type="radio" name="isAbnormal" value="true">
             <br />
             今日健康码颜色？<br />
             绿色<input type="radio" name="healthCodeType" value="0" checked>
@@ -77,12 +69,12 @@
             红色<input type="radio" name="healthCodeType" value="2">
             <br />
             今日是否出校？<br />
-            否<input type="radio" name="isOutSchool" value="0" checked>
-            是<input type="radio" name="isOutSchool" value="1">
+            否<input type="radio" name="isOutSchool" value="false" checked>
+            是<input type="radio" name="isOutSchool" value="true">
             <br />
             今日是否出城？<br />
-            否<input type="radio" name="isOutCity" value="0" checked>
-            是<input type="radio" name="isOutCity" value="1">
+            否<input type="radio" name="isOutCity" value="false" checked>
+            是<input type="radio" name="isOutCity" value="true">
             <br />
             <input type="submit" value="提交">
         </form>

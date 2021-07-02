@@ -2,6 +2,7 @@ package cn.edu.zust.service;
 
 import cn.edu.zust.util.DBUtil;
 import cn.edu.zust.vo.State;
+import cn.edu.zust.vo.User;
 import cn.edu.zust.vo.Vacation;
 
 import java.sql.ResultSet;
@@ -20,7 +21,15 @@ public class StateService {
                 state.isRecentCountry() + ", " + state.isRecentPeople() + ", " + state.isSymptom() + ", " + state.isAbnormal() + ", " +
                 state.getHealthCodeType() + ", " + state.isOutSchool() + ", " + state.isOutCity() + ");";
         Date date = new Date();
-        System.out.println(date + " addState: sql = " + sql);
+        return DBUtil.update(sql);
+    }
+
+    public Integer delState(String userNum) {
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
+        String stateTime = simpleDateFormat.format(date);
+        String sql = "DELETE FROM `state` WHERE `stateTime` = \"" + stateTime + "\" AND `userNum` = \"" + userNum + "\";";
         return DBUtil.update(sql);
     }
 

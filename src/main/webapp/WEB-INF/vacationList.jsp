@@ -19,7 +19,7 @@
     <div class="container">
         <jsp:include page="template/header.jsp" >
             <jsp:param name="position" value="Vacation"/>
-            <jsp:param name="userName" value="${sessionScope.user.userName}"/>
+                <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">

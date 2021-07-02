@@ -137,4 +137,14 @@ public class UserService {
             teacherNum = rs.getInt("num");
         return teacherNum;
     }
+
+    public String getCollegeNameByUserNum(Integer userNum) throws SQLException {
+        String sql = "SELECT `collegeNum` FROM `user` WHERE userNum = \"" + userNum + "\";";
+        ResultSet rs = DBUtil.select(sql);
+        Integer collegeNum = -1;
+        if (rs != null && rs.next()) {
+            collegeNum = rs.getInt("collegeNum");
+        }
+        return getCollegeNameById(collegeNum);
+    }
 }
