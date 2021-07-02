@@ -35,7 +35,7 @@
         <jsp:param name="bgcolor" value="bgcolor-yellow"/>
         <jsp:param name="bgcolor_dark" value="bgcolor-darkyellow"/>
         <jsp:param name="title" value="今日经过高危地区人数"/>
-        <jsp:param name="number" value="${requestScope.statistic.highRiskNum}"/>
+        <jsp:param name="number" value="${requestScope.statistic.passRiskAreaNum}"/>
         <jsp:param name="url" value="/statistic/riskarea"/>
     </jsp:include>
 </div>
