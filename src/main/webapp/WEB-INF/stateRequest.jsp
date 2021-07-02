@@ -7,11 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>addState</title>
     <%@ include file="template/import.jsp" %>
 </head>
+<%request.setCharacterEncoding("UTF-8");%>
 <body>
 <jsp:include page="template/navigate.jsp">
     <jsp:param name="type" value="${sessionScope.user.userType}"/>
