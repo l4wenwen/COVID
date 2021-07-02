@@ -51,23 +51,23 @@
                 </tr>
 
                 <c:if test="${not empty requestScope.states}">
-                    <c:forEach items="${states}" varStatus="i" var="state">
+                    <c:forEach items="${requestScope.states}" varStatus="i" var="state">
                         <tr>
                             <td>${state.stateNum}</td>
                             <td>${state.userNum}</td>
                             <td>${state.stateTime}</td>
-                            <td>${state.isTemperature}</td>
-                            <td>${state.isCovid}</td>
-                            <td>${state.isLikeCovid}</td>
+                            <td>${state.temperature}</td>
+                            <td>${state.covid}</td>
+                            <td>${state.likeCovid}</td>
                             <td>${state.quarantine}</td>
-                            <td>${state.isRecentArea}</td>
-                            <td>${state.isRecentCountry}</td>
-                            <td>${state.isRecentPeople}</td>
-                            <td>${state.isSymptom}</td>
-                            <td>${state.isAbnormal}</td>
+                            <td>${state.recentArea}</td>
+                            <td>${state.recentCountry}</td>
+                            <td>${state.recentPeople}</td>
+                            <td>${state.symptom}</td>
+                            <td>${state.abnormal}</td>
                             <td>${state.healthCodeType}</td>
-                            <td>${state.isOutSchool}</td>
-                            <td>${state.isOutCity}</td>
+                            <td>${state.outSchool}</td>
+                            <td>${state.outCity}</td>
                         </tr>
                     </c:forEach>
                 </c:if>

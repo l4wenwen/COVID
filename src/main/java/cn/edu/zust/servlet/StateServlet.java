@@ -37,21 +37,28 @@ public class StateServlet extends BaseServlet {
     }
 
     public void request(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.print("request: ");
-        String userNum = request.getParameter("userNum");
+        System.out.println("request: ");
+        User user = (User) request.getSession().getAttribute("user");
+        String userNum = user.getUserNum();
+        System.out.println("userNum = " + userNum);
         String stateTime = getTime();
         boolean isTemperature = Boolean.parseBoolean(request.getParameter("isTemperature"));
+        System.out.println("isTemperature = " + isTemperature);
         boolean isCovid = Boolean.parseBoolean(request.getParameter("isCovid"));
         boolean isLikeCovid = Boolean.parseBoolean(request.getParameter("isLikeCovid"));
+        System.out.println("isLikeCovid = " + isLikeCovid);
         Integer quarantine = Integer.parseInt(request.getParameter("quarantine"));
+        System.out.println("quarantine = " + quarantine);
         boolean isRecentArea = Boolean.parseBoolean(request.getParameter("isRecentArea"));
         boolean isRecentCountry = Boolean.parseBoolean(request.getParameter("isRecentCountry"));
         boolean isRecentPeople = Boolean.parseBoolean(request.getParameter("isRecentPeople"));
         boolean isSymptom = Boolean.parseBoolean(request.getParameter("symptom"));
         boolean isAbnormal = Boolean.parseBoolean(request.getParameter("isAbnormal"));
+        System.out.println("isAbnormal = " + isAbnormal);
         Integer healthCodeType = Integer.parseInt(request.getParameter("healthCodeType"));
         boolean isOutSchool = Boolean.parseBoolean(request.getParameter("isOutSchool"));
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
+        System.out.println("isOutCity = " + isOutCity);
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
             System.out.println("输入不能为空。");
@@ -62,11 +69,11 @@ public class StateServlet extends BaseServlet {
             Integer cnt = stateService.addState(state);
             if (cnt == 1) {
                 System.out.println("提交请求成功。");
-                response.sendRedirect("/state/list");
+                request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
             } else {
                 request.setAttribute("message", "提交请求失败。");
                 System.out.println("提交请求失败。");
-                request.getRequestDispatcher("/state/request").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
             }
         }
     }

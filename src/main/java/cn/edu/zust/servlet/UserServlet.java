@@ -53,7 +53,7 @@ public class UserServlet extends BaseServlet {
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("user", user);
-            request.getRequestDispatcher("/user/userHome").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/userHome.jsp").forward(request, response);
         }
     }
 

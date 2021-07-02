@@ -14,8 +14,8 @@ import java.util.List;
 public class StateService {
     public Integer addState(State state) {
         String sql = "INSERT INTO `State` (userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine, " +
-                "isRecentArea, isRecentCountry, isRecentPeople, symptom, isAbnormal, healthCodeType, isOutSchool, isOutCity) VALUES (" +
-                state.getUserNum() + ", " + state.getStateTime() + ", " + state.isTemperature() + ", " +
+                "isRecentArea, isRecentCountry, isRecentPeople, isSymptom, isAbnormal, healthCodeType, isOutSchool, isOutCity) VALUES (" +
+                state.getUserNum() + ", \"" + state.getStateTime() + "\", " + state.isTemperature() + ", " +
                 state.isCovid() + ", " + state.isLikeCovid() + ", " + state.getQuarantine() + ", " + state.isRecentArea() + ", " +
                 state.isRecentCountry() + ", " + state.isRecentPeople() + ", " + state.isSymptom() + ", " + state.isAbnormal() + ", " +
                 state.getHealthCodeType() + ", " + state.isOutSchool() + ", " + state.isOutCity() + ");";
@@ -54,11 +54,11 @@ public class StateService {
     }
 
     public List<State> selectState(String startTime, String endTime, String collegeName, Integer userType, String userNum) throws SQLException {
-        String sql = "SELECT * FROM `State` WHERE stateTime BETWEEN " + startTime + " AND " + endTime;
+        String sql = "SELECT * FROM `State` WHERE stateTime BETWEEN \"" + startTime + "\" AND \"" + endTime + "\"";
         if (userType == 0) {
             sql += ";";
         } else if (userType == 2) {
-            sql += " AND `userNum` = \"" + "userNum\";";
+            sql += " AND `userNum` = \"" + userNum + "\";";
         } else {
             sql = "SELECT * FROM `state` WHERE "+ "`collegeName` = \"" + collegeName + "\" AND `stateTime` BETWEEN "
                     + startTime + " AND " + endTime + ";";
