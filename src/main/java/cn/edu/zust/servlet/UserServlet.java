@@ -23,8 +23,7 @@ public class UserServlet extends BaseServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
-        if ("logout".equals(methodName) || "userHome".equals(methodName)
-                || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)) {
+        if ("logout".equals(methodName) || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -77,18 +76,6 @@ public class UserServlet extends BaseServlet {
         request.getRequestDispatcher(directURI).forward(request, response);
     }
 
-    public void userHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = getCurrentUser(request);
-        String directURI = "/WEB-INF/";
-        if (user.getUserType() == 0)
-            directURI += "adminHome.jsp";
-        else if (user.getUserType() == 1)
-            directURI += "teacherHome.jsp";
-        else
-            directURI += "studentHome.jsp";
-        request.getRequestDispatcher(directURI).forward(request, response);
-    }
-
     public void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pwd = request.getParameter("pwd");
         String repwd = request.getParameter("repwd");
@@ -121,6 +108,10 @@ public class UserServlet extends BaseServlet {
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
         response.sendRedirect("/user/login");
+    }
+
+    public void userHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/userHome.jsp").forward(request, response);
     }
 
     public User getCurrentUser(HttpServletRequest request) {

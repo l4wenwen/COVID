@@ -9,15 +9,16 @@
         <h1>${param.type == 0 ? "Admin" : "User"}</h1>
     </div>
     <ul class="nav-item">
-        <a href="${pageContext.request.contextPath}/user/userHome"><li>Home</li></a>
+        <a href="${pageContext.request.contextPath}/user/userHome"><li>个人主页</li></a>
         <c:if test="${param.type != 0}">
-            <a href="${pageContext.request.contextPath}/vacation/list"><li>Vacation</li></a>
+            <a href="${pageContext.request.contextPath}/vacation/list"><li>请假情况</li></a>
         </c:if>
         <c:if test="${param.type == 2}">
-            <a href="${pageContext.request.contextPath}/state/request"><li>State</li></a>
-            <a href="${pageContext.request.contextPath}/vacation/request"><li>Ask for leave</li></a>
+            <a href="${pageContext.request.contextPath}/state/request"><li>每日打卡</li></a>
+            <a href="${pageContext.request.contextPath}/state/list"><li>打卡情况</li></a>
+            <a href="${pageContext.request.contextPath}/vacation/request"><li>请 假</li></a>
         </c:if>
         <a href="${pageContext.request.contextPath}/user/profile"><li>Profile</li></a>
-        <a href="${pageContext.request.contextPath}/user/logout"><li>Logout</li></a>
+        <a href="${pageContext.request.contextPath}/user/logout"><li>注销</li></a>
     </ul>
 </div>

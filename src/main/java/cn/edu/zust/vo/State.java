@@ -68,6 +68,22 @@ public class State {
         this.isOutCity = isOutCity;
     }
 
+    public State(String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean isSymptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {        this.userNum = userNum;
+        this.stateTime = stateTime;
+        this.isTemperature = isTemperature;
+        this.isCovid = isCovid;
+        this.isLikeCovid = isLikeCovid;
+        this.quarantine = quarantine;
+        this.isRecentArea = isRecentArea;
+        this.isRecentCountry = isRecentCountry;
+        this.isRecentPeople = isRecentPeople;
+        this.isSymptom = isSymptom;
+        this.isAbnormal = isAbnormal;
+        this.healthCodeType = healthCodeType;
+        this.isOutSchool = isOutSchool;
+        this.isOutCity = isOutCity;
+    }
+
     public Integer getStateNum() {
         return stateNum;
     }
