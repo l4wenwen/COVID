@@ -24,7 +24,7 @@ public class UserServlet extends BaseServlet {
         response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
         if ("logout".equals(methodName) || "userHome".equals(methodName)
-                || "update".equals(methodName)) {
+                || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -89,15 +89,22 @@ public class UserServlet extends BaseServlet {
         request.getRequestDispatcher(directURI).forward(request, response);
     }
 
-    public void changePassword(HttpServletRequest request, HttpServletResponse response) {
-
+    public void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String pwd = request.getParameter("pwd");
+        String repwd = request.getParameter("repwd");
+        String json = "{\"state\": ";
+        if (!isGoodString(pwd) || !isGoodString(repwd) || !pwd.equals(repwd) || !userService.updatePassword(getCurrentUser(request).getUserNum(), pwd)) json += "1";
+        else json += "0";
+        json += "}";
+        PrintWriter out = response.getWriter();
+        out.print(json);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
-    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         UserProfile userProfile = userService.getUserProfile(getCurrentUser(request));
         request.setAttribute("userProfile", userProfile);
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);

@@ -17,6 +17,7 @@
             <a href="${pageContext.request.contextPath}/state/request"><li>State</li></a>
             <a href="${pageContext.request.contextPath}/vacation/request"><li>Ask for leave</li></a>
         </c:if>
+        <a href="${pageContext.request.contextPath}/user/profile"><li>Profile</li></a>
         <a href="${pageContext.request.contextPath}/user/logout"><li>Logout</li></a>
     </ul>
 </div>

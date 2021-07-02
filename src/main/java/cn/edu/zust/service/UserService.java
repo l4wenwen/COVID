@@ -55,7 +55,7 @@ public class UserService {
     public String getCollegeNameById(Integer collegeNum) throws SQLException {
         String sql = "SELECT * FROM college WHERE collegeNum='" + collegeNum + "'";
         ResultSet rs = DBUtil.select(sql);
-        String collegeName = "ERROR!";
+        String collegeName = "NULL";
         if (rs != null && rs.next()) {
             collegeName = rs.getString("collegeName");
         }
@@ -65,7 +65,7 @@ public class UserService {
     public String getMajorNameById(Integer majorNum) throws SQLException {
         String sql = "SELECT * FROM major WHERE majorNum='" + majorNum + "'";
         ResultSet rs = DBUtil.select(sql);
-        String majorName = "ERROR!";
+        String majorName = "NULL";
         if (rs != null && rs.next()) {
             majorName = rs.getString("majorName");
         }
@@ -80,6 +80,14 @@ public class UserService {
         userProfile.setCollegeName(getCollegeNameById(user.getCollegeNum()));
         userProfile.setMajorName(getMajorNameById(user.getMajorNum()));
         String userType = "管理员";
-        userProfile.setUserType(user.getUserName());
+        if (user.getUserType() == 1) userType = "老师";
+        else if (user.getUserType() == 2) userType = "学生";
+        userProfile.setUserType(userType);
+        return userProfile;
+    }
+
+    public boolean updatePassword(String userNum, String pwd) {
+        String sql = "UPDATE user SET password='" + pwd + "' WHERE userNum='" + userNum + "'";
+        return DBUtil.update(sql) == 1;
     }
 }

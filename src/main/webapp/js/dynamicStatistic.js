@@ -28,4 +28,32 @@ $(document).ready(function() {
             });
         }
     );
+
+    $("#changePwd").click(
+        function () {
+            $.ajax({
+                url: "/user/changePassword",
+                type: "POST",
+                dateType: "json",
+                data: {
+                    pwd: $("#pwd").val(),
+                    repwd: $("#repwd").val()
+                },
+                success: function (res) {
+                    res = JSON.parse(res);
+                    if (res.state == 0) {
+                        $("#hide").html("修改成功");
+                    } else {
+                        $("#hide").html("修改失败");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function () {
+                    $("#hide").css("display","block");
+                }
+            });
+        }
+    );
 });
