@@ -6,16 +6,21 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "userServlet", urlPatterns = "user/*", loadOnStartup = 1)
 public class UserServlet extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //doGet跳转至相应界面
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
         if ("logout".equals(methodName) || "userHome".equals(methodName)
                 || "update".equals(methodName)) {
@@ -95,8 +100,12 @@ public class UserServlet extends BaseServlet {
 
     }
 
-    public void tmp(HttpServletRequest request, HttpServletResponse response) {
-
+    public void userinfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        List<User> users = userService.getAllUsers();
+        String json = convertUserToJSON(users);
+        PrintWriter out = response.getWriter();
+        out.print(json);
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

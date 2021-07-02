@@ -4,6 +4,7 @@ import cn.edu.zust.service.StateService;
 import cn.edu.zust.service.StatisticService;
 import cn.edu.zust.service.UserService;
 import cn.edu.zust.service.VacationService;
+import cn.edu.zust.vo.User;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 
 public class BaseServlet extends HttpServlet {
@@ -34,6 +36,7 @@ public class BaseServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //doPost调用方法
+        request.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
         try {
             Method method = getClass().getDeclaredMethod(methodName,
@@ -63,6 +66,16 @@ public class BaseServlet extends HttpServlet {
 
     protected boolean isGoodString(String str) {
         return str != null && !"".equals(str.trim());
+    }
+
+    protected String convertUserToJSON(List<User> users) {
+        StringBuilder json = new StringBuilder("[");
+        for(User user : users) {
+            json.append("{\"userName\": \"").append(user.getUserName()).append("\", \"userNum\": \"").append(user.getUserNum()).append("\", \"sex\": \"").append(user.isSex() ? "男" : "女").append("\"},");
+        }
+        json.delete(json.lastIndexOf(","), json.lastIndexOf(",")+1);
+        json.append("]");
+        return json.toString();
     }
 
     //获取URI中使用的方法

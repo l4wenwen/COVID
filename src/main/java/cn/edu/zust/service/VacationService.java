@@ -15,6 +15,7 @@ public class VacationService {
         List<Vacation> vacations = new ArrayList<>();
         while(rs.next()) {
             int id = rs.getInt("vacationNum");
+            String userName = rs.getString("userName");
             String reason = rs.getString("reason");
             String startTime = rs.getString("startTime");
             String endTime = rs.getString("endTime");
@@ -22,7 +23,7 @@ public class VacationService {
             String way = rs.getString("way");
             String userId = rs.getString("userNum");
             int state = rs.getInt("state");
-            Vacation vacation = new Vacation(id, reason, startTime, endTime, requestTime, way, userId, state);
+            Vacation vacation = new Vacation(id, reason, startTime, endTime, requestTime, way, userId, userName, state);
             vacations.add(vacation);
         }
         return vacations;

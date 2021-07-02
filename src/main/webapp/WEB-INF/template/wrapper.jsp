@@ -7,7 +7,8 @@
         </div>
     </div>
     <div class="bottom-link ${param.bgcolor_dark}">
-        <a href="#">
+        <a href="#" class="btn">
+            <span style="display: none" class="url">${param.url}</span>
             More info <i class="fa fa-arrow-right"></i>
         </a>
     </div>
