@@ -61,6 +61,7 @@
                 </jsp:include>
 
             </div>
+            <div class="loader" style="display:none;"><i class="fa fa-spinner fa-spin"></i></div>
             <table class="chart">
                 <tr class="title">
                     <th>姓名</th>

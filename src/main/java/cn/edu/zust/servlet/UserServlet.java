@@ -1,6 +1,7 @@
 package cn.edu.zust.servlet;
 
 import cn.edu.zust.vo.User;
+import cn.edu.zust.vo.UserProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -96,8 +97,10 @@ public class UserServlet extends BaseServlet {
 
     }
 
-    public void profile(HttpServletRequest request, HttpServletResponse response) {
-
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserProfile userProfile = userService.getUserProfile(getCurrentUser(request));
+        request.setAttribute("userProfile", userProfile);
+        request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 
     public void userinfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
