@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Major` (
 );
 
 CREATE TABLE IF NOT EXISTS `User` (
-    `userNum` CHAR(9) PRIMARY KEY,
+    `userNum` VARCHAR(10) PRIMARY KEY,
     `collegeNum` INT NOT NULL,
     `majorNum` INT NOT NULL,
     `classNum` INT NOT NULL,
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `User` (
     `userName` VARCHAR(10) NOT NULL,
     `password` VARCHAR(10) NOT NULL,
     `sex` BOOLEAN NOT NULL,
+    `telephone` VARCHAR(15),
     FOREIGN KEY(collegeNum) REFERENCES College(collegeNum),
     FOREIGN KEY(majorNum) REFERENCES Major(majorNum),
     FOREIGN KEY(classNum) REFERENCES Class(classNum)
@@ -39,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 CREATE TABLE IF NOT EXISTS `State` (
     `stateNum` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `userNum` CHAR(9) NOT NULL,
+    `userNum` VARCHAR(10) NOT NULL,
     `stateTime` DATE NOT NULL,
     `isTemperature` BOOLEAN NOT NULL,
     `isCovid` BOOLEAN NOT NULL,
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `State` (
 
 CREATE TABLE IF NOT EXISTS `Vacation` (
     `vacationNum` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    `userNum` CHAR(9) NOT NULL,
+    `userNum` VARCHAR(10) NOT NULL,
     `reason` VARCHAR(255) NOT NULL,
     `startTime` DATE NOT NULL,
     `endTime` DATE NOT NULL,
