@@ -79,7 +79,7 @@ public class StateServlet extends BaseServlet {
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         User user = (User) request.getSession().getAttribute("user");
-        Integer userNum = Integer.parseInt(user.getUserNum());
+        String userNum = user.getUserNum();
         String collegeName = userService.getCollegeNameByUserNum(userNum);
         if (!isGoodString(startTime) || !isGoodString(endTime) || !isGoodString(collegeName)) {
             request.setAttribute("message", "输入不能为空。");
