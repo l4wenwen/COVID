@@ -44,11 +44,11 @@
                     <th>途经疫情中高风险地区</th>
                     <th>近14天国(境)外出行</th>
                     <th>近14天接触新冠病例</th>
-                    <th>今日相关症状</th>
-                    <th>今日健康异常</th>
-                    <th>今日健康码颜色</th>
-                    <th>今日出校</th>
-                    <th>今日出城</th>
+                    <th>相关症状</th>
+                    <th>健康异常</th>
+                    <th>健康码颜色</th>
+                    <th>是否出校</th>
+                    <th>是否出城</th>
                 </tr>
 
                 <c:if test="${not empty requestScope.states}">
