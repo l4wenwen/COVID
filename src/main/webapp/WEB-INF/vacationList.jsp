@@ -51,7 +51,7 @@
                             <td>${vacation.startTime}</td>
                             <td>${vacation.endTime}</td>
                             <td>${vacation.way}</td>
-                            <td>${vacation.state}</td>
+                            <td>${vacation.state == 0 ? "未处理" : (vacation.state == 1 ? "拒绝" : "同意")}</td>
                             <td>${vacation.requestTime}</td>
                             <td>
                                 <c:if test="${sessionScope.user.userType == 2 && vacation.state == 0}">

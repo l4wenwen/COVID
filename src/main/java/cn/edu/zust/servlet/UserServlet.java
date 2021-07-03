@@ -12,6 +12,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "userServlet", urlPatterns = "user/*", loadOnStartup = 1)
 public class UserServlet extends BaseServlet {
@@ -86,15 +88,29 @@ public class UserServlet extends BaseServlet {
         out.print(json);
     }
 
-    public void update(HttpServletRequest request, HttpServletResponse response) {
-
+    public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String telephone = request.getParameter("telephone");
+        System.out.println(telephone);
+        boolean result = false;
+        if (isGoodString(telephone)) {
+            Pattern pattern = Pattern.compile("^[1][3,4,5,7,8][0-9]{9}$"); // 验证手机号
+            Matcher matcher = pattern.matcher(telephone);
+            result = matcher.matches();
+        }
+        if (result) {
+            userService.updateTelephone(getCurrentUser(request).getUserNum(), telephone);
+        } else {
+            request.setAttribute("message", "号码格式错误！");
+        }
+        request.getRequestDispatcher("/user/profile").forward(request, response);
     }
 
     public void manager(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/userManager.jsp").forward(request, response);
     }
+
     public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        UserProfile userProfile = userService.getUserProfile(getCurrentUser(request));
+        UserProfile userProfile = userService.getUserProfile(getCurrentUser(request).getUserNum());
         request.setAttribute("userProfile", userProfile);
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }

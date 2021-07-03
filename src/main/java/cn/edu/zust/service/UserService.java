@@ -22,14 +22,16 @@ public class UserService {
             int collegeNum = rs.getInt("collegeNum");
             int majorNum = rs.getInt("majorNum");
             int classNum = rs.getInt("classNum");
-            User user = new User(userName, userNum, sex, collegeNum, majorNum, "", classNum, userType);
+            String telephone = rs.getString("telephone");
+            User user = new User(userName, userNum, sex, collegeNum, majorNum, "", classNum, userType, telephone);
             users.add(user);
         }
         return users;
     }
 
     public User userLogin(String userNum, String password) throws SQLException {
-        String sql = "SELECT * FROM user WHERE userNum = '" + userNum + "' and password = '" + password + "'";
+        String sql = "SELECT *, isCovid state FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
+                "WHERE userNum='" + userNum + "' AND password='" + password + "'";
         ResultSet rs = DBUtil.select(sql);
         User user = null;
         if (rs != null && rs.next()) {
@@ -39,7 +41,10 @@ public class UserService {
             int collegeNum = rs.getInt("collegeNum");
             int majorNum = rs.getInt("majorNum");
             int classNum = rs.getInt("classNum");
-            user = new User(userName, userNum, sex, collegeNum, majorNum, password, classNum, userType);
+            String telephone = rs.getString("telephone");
+            Integer state = rs.getInt("state");
+            user = new User(userName, userNum, sex, collegeNum, majorNum, password, classNum, userType, telephone);
+            user.setState(state);
         }
         return user;
     }
@@ -56,7 +61,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() throws SQLException {
-        String sql = "SELECT userName, userNum, sex, CASE isCovid WHEN 1 THEN '高危' WHEN 0 THEN '正常' ELSE '未填写' END state, " +
+        String sql = "SELECT userName, userNum, sex, isCovid state, " +
                 "telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
                 "WHERE a.userType = 2";
         ResultSet rs = DBUtil.select(sql);
@@ -65,7 +70,7 @@ public class UserService {
             String userNum = rs.getString("userNum");
             String userName = rs.getString("userName");
             boolean sex = rs.getBoolean("sex");
-            String state = rs.getString("state");
+            Integer state = rs.getInt("state");
             User user = new User();
             user.setUserNum(userNum);
             user.setUserName(userName);
@@ -101,17 +106,24 @@ public class UserService {
         return majorName;
     }
 
-    public UserProfile getUserProfile(User user) throws SQLException {
-        UserProfile userProfile = new UserProfile();
-        userProfile.setUserName(user.getUserName());
-        userProfile.setUserNum(user.getUserNum());
-        userProfile.setSex(user.isSex() ? "男" : "女");
-        userProfile.setCollegeName(getCollegeNameById(user.getCollegeNum()));
-        userProfile.setMajorName(getMajorNameById(user.getMajorNum()));
-        String userType = "管理员";
-        if (user.getUserType() == 1) userType = "老师";
-        else if (user.getUserType() == 2) userType = "学生";
-        userProfile.setUserType(userType);
+    public UserProfile getUserProfile(String userNum) throws SQLException {
+        String sql = "SELECT * FROM user WHERE userNum='" + userNum + "'";
+        List<User> users = executeUserQuery(sql);
+        UserProfile userProfile = null;
+        if (users.size() == 1) {
+            userProfile = new UserProfile();
+            User user = users.get(0);
+            userProfile.setUserName(user.getUserName());
+            userProfile.setUserNum(user.getUserNum());
+            userProfile.setSex(user.isSex() ? "男" : "女");
+            userProfile.setCollegeName(getCollegeNameById(user.getCollegeNum()));
+            userProfile.setMajorName(getMajorNameById(user.getMajorNum()));
+            String userType = "管理员";
+            if (user.getUserType() == 1) userType = "老师";
+            else if (user.getUserType() == 2) userType = "学生";
+            userProfile.setUserType(userType);
+            userProfile.setTelephone(user.getTelephone() == null ? "未填写" : user.getTelephone());
+        }
         return userProfile;
     }
 
@@ -146,5 +158,10 @@ public class UserService {
             collegeNum = rs.getInt("collegeNum");
         }
         return getCollegeNameById(collegeNum);
+    }
+
+    public boolean updateTelephone(String userNum, String telephone) {
+        String sql = "UPDATE user SET telephone='" + telephone + "' WHERE userNum='" + userNum + "'";
+        return DBUtil.update(sql) == 1;
     }
 }

@@ -1,6 +1,7 @@
 .search-warpper {
 	display: flex;
 	justify-content: center;
+    align-items: center;
 }
 
 
@@ -9,7 +10,6 @@
     display: flex;
     height: 2.5rem;
     width: 50%;
-    /*background: #393E46;*/
     min-width: 18%!important;
     border-radius: 2.5rem;
     padding: 2px;
@@ -37,4 +37,10 @@
     font-size: 1.15rem;
     color: #FFF;
     border-radius: 2.5rem;
+}
+
+.search-warpper .loader {
+    margin-bottom: 0.75rem;
+    margin-left: 0.75rem;
+    visibility: hidden;
 }

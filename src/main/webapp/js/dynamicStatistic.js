@@ -23,10 +23,10 @@ $(document).ready(function() {
                     console.log(error);
                 },
                 beforeSend: function () {
-                    $(".loader").css("display", "block");
+                    $(".loader").css("visibility", "visible");
                 },
                 complete: function () {
-                    $(".loader").css("display", "none");
+                    $(".loader").css("visibility", "hidden");
                 }
             });
         }
@@ -59,6 +59,26 @@ $(document).ready(function() {
                     $("#hide").css("display","block");
                 }
             });
+        }
+    );
+
+    $("#modal-button").click(
+        function() {
+            $(".modal").css("display","flex");
+        }
+    );
+
+    $(".modal .close").click(
+        function() {
+            $(".modal").css("display","none");
+        }
+    );
+
+    $(window).click(
+        function(event) {
+            if (event.target == $(".modal")[0]) {
+                $(".modal").css("display","none");
+            }
         }
     );
 });

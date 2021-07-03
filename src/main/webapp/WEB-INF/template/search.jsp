@@ -11,4 +11,5 @@
         <input type="text" class="search-data" placeholder="Search"/>
         <button type="submit" class="fas fa-search"></button>
     </div>
+    <div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
 </div>

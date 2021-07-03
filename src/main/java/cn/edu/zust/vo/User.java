@@ -10,7 +10,7 @@ public class User {
     private String password;
     private boolean sex;
     private String telephone;
-    private String state;
+    private Integer state;
 
     public User() {
     }
@@ -26,7 +26,7 @@ public class User {
      * @param classNum      班级编号
      * @param userType      用户类别(0管理员, 1老师, 2学生)
      */
-    public User(String userName, String userNum, boolean sex, Integer collegeNum, Integer majorNum, String password, Integer classNum, Integer userType) {
+    public User(String userName, String userNum, boolean sex, Integer collegeNum, Integer majorNum, String password, Integer classNum, Integer userType, String telephone) {
         this.userName = userName;
         this.userNum = userNum;
         this.sex = sex;
@@ -35,6 +35,7 @@ public class User {
         this.password = password;
         this.classNum = classNum;
         this.userType = userType;
+        this.telephone = telephone;
     }
 
     public String getUserName() {
@@ -101,11 +102,11 @@ public class User {
         this.telephone = telephone;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

@@ -10,7 +10,7 @@
 <head>
     <title>用户信息</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ include file="template/import.jsp" %>
+    <jsp:include page="template/import.jsp" />
 </head>
 <body>
 <%request.setCharacterEncoding("UTF-8");%>
@@ -31,11 +31,30 @@
             学院：${requestScope.userProfile.collegeName}<br/>
             专业：${requestScope.userProfile.majorName}<br/>
             类型：${requestScope.userProfile.userType}<br/>
-            手机号码：<input type="text" disabled><a href="#">申请修改</a> <br/>
-            密码：<input type="password" id="pwd" />
-            确认密码：<input type="password" id="repwd" />
-            <button id="changePwd">更改密码</button>
-            <div id="hide" style="display: none"></div>
+            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                手机号码：<input type="text" value="${requestScope.userProfile.telephone}" name="telephone">
+                <input type="submit" value="申请修改" />
+            </form>
+
+            <button id="modal-button">修改密码</button>
+            <div class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">x</span>
+                        <h2>修改密码</h2>
+                    </div>
+                    <div class="modal-body">
+                        密码：<input type="password" id="pwd" /><br/>
+                        确认密码：<input type="password" id="repwd" /><br/>
+                        <button id="changePwd">更改密码</button><br/>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="hide" style="display: none"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

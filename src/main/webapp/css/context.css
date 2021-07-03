@@ -22,10 +22,8 @@
 .content {
 	width: 80%;
 	min-height: 100vh;
-	margin: 0 auto;
 	background: #FFF;
-	margin-top: 1.2rem;
-	margin-bottom: 1.2rem;
+	margin: 1.2rem auto;
 	padding: 0.5rem 1.5rem 0.5rem 1.5rem;
 	box-shadow: 0 0.2rem 1rem 0rem #ccc;
 }

@@ -18,7 +18,7 @@ public class StatisticService {
             String userName = rs.getString("userName");
             boolean sex = rs.getInt("sex") == 1;
             String telephone = rs.getString("telephone");
-            String state = rs.getString("state");
+            Integer state = rs.getInt("state");
             User user = new User();
             user.setUserName(userName);
             user.setUserNum(userNum);
@@ -57,21 +57,21 @@ public class StatisticService {
     }
 
     public List<User> getFilledUsers(String currentDate) throws SQLException {
-        String sql = "SELECT userName, userNum, sex, CASE isCovid WHEN 1 THEN '高危' WHEN 0 THEN '正常' END state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
+        String sql = "SELECT userName, userNum, sex, isCovid state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
                 "state.stateTime FROM user LEFT JOIN state ON user.userNum = state.userNum) a WHERE a.userType = 2 AND a.stateTime='" + currentDate + "'";
         List<User> users = new ArrayList<>();
         return executeStatisticQuery(sql);
     }
 
     public List<User> getHighRiskUsers(String currentDate) throws SQLException {
-        String sql = "SELECT userName, userNum, sex, CASE isCovid WHEN 1 THEN '高危' WHEN 0 THEN '正常' END state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
+        String sql = "SELECT userName, userNum, sex, isCovid state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
                 "state.stateTime FROM user LEFT JOIN state ON user.userNum = state.userNum) a WHERE a.userType = 2 AND isCovid=1 AND a.stateTime='" + currentDate + "'";
         List<User> users = new ArrayList<>();
         return executeStatisticQuery(sql);
     }
 
     public List<User> getHighRiskAreaUsers(String currentDate) throws SQLException {
-        String sql = "SELECT userName, userNum, sex, CASE isCovid WHEN 1 THEN '高危' WHEN 0 THEN '正常' END state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
+        String sql = "SELECT userName, userNum, sex, isCovid state, telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea, " +
                 "state.stateTime FROM user LEFT JOIN state ON user.userNum = state.userNum) a WHERE a.userType = 2 AND isRecentArea=1 AND a.stateTime='" + currentDate + "'";
         List<User> users = new ArrayList<>();
         return executeStatisticQuery(sql);

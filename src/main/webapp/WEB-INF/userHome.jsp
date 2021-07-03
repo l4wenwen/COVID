@@ -30,8 +30,21 @@
         <div class="content">
             <c:if test="${sessionScope.user.userType != 2}">
                 <jsp:include page="template/state.jsp" />
+                <jsp:include page="template/userChart.jsp" />
             </c:if>
-            <jsp:include page="template/userChart.jsp" />
+            <c:if test="${sessionScope.user.userType == 2}">
+                <div id="qrcode" style="width:150px; height:150px; margin-top:15px;"></div>
+                <script type="text/javascript">
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        width : 150,
+                        height : 150,
+                        colorDark : "${sessionScope.user.state == null ? "#777777" : (sessionScope.user.state == 1 ? "#FF4646" : "#5E8B7E")}",
+                        colorLight : "#FFF",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                    qrcode.makeCode(${sessionScope.user.userNum});
+                </script>
+            </c:if>
         </div>
     </div>
 </div>

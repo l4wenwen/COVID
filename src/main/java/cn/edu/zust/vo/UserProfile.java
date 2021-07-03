@@ -8,6 +8,7 @@ public class UserProfile {
     private String collegeName;
     private String majorName;
     private String userType;
+    private String telephone;
 
     public UserProfile(String userNum, String userName, String sex, String collegeName, String majorName, String userType) {
         this.userNum = userNum;
@@ -67,5 +68,13 @@ public class UserProfile {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }

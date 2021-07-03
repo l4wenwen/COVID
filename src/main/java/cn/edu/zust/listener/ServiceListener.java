@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebListener;
 public class ServiceListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        String url = "jdbc:mysql://localhost:3306/COVID?useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/COVID?allowPublicKeyRetrieval=true";
         String userName = "root";
         String pwd = "root";
         DBUtil.openConnection(url, userName, pwd);

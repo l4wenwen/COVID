@@ -61,8 +61,14 @@ public class VacationService {
         return isRevoked;
     }
 
-    public boolean performDecision(int vacationNum, int operation) {
-        String sql = "UPDATE vacation SET state = " + operation + " WHERE vacationNum = " + vacationNum;
-        return DBUtil.update(sql) == 1;
+    public boolean performDecision(int vacationNum, int operation) throws SQLException {
+        String sqlCheck = "SELECT * FROM vacation WHERE vacationNum='" + vacationNum + "' AND state=0";
+        ResultSet rs = DBUtil.select(sqlCheck);
+        boolean isUpdated = false;
+        if (rs != null && rs.next()) {
+            String sql = "UPDATE vacation SET state = " + operation + " WHERE vacationNum = " + vacationNum;
+            isUpdated = DBUtil.update(sql) == 1;
+        }
+        return isUpdated;
     }
 }

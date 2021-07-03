@@ -81,7 +81,11 @@ public class VacationServlet extends BaseServlet {
         request.getRequestDispatcher("/vacation/list").forward(request, response);
     }
 
-    public void operate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void operate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+        if (getCurrentUser(request).getUserType() == 2) {
+            request.getRequestDispatcher("/vacation/list").forward(request, response);
+            return;
+        }
         String vid = request.getParameter("vid");
         String operation = request.getParameter("operation");
         if (getCurrentUser(request).getUserType() == 0)

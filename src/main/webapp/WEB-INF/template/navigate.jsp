@@ -15,8 +15,8 @@
         </c:if>
         <c:if test="${param.type == 2}">
             <a href="${pageContext.request.contextPath}/state/request"><li>每日打卡</li></a>
-            <a href="${pageContext.request.contextPath}/state/list"><li>打卡情况</li></a>
         </c:if>
+        <a href="${pageContext.request.contextPath}/state/list"><li>打卡情况</li></a>
         <a href="${pageContext.request.contextPath}/user/profile"><li>个人资料</li></a>
         <a href="${pageContext.request.contextPath}/user/logout"><li>注销</li></a>
     </ul>
