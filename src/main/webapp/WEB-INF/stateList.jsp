@@ -12,6 +12,7 @@
 <head>
     <title>学生打卡记录</title>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <%request.setCharacterEncoding("UTF-8");%>
 <body>
@@ -44,11 +45,11 @@
                     <th>途经疫情中高风险地区</th>
                     <th>近14天国(境)外出行</th>
                     <th>近14天接触新冠病例</th>
-                    <th>今日相关症状</th>
-                    <th>今日健康异常</th>
-                    <th>今日健康码颜色</th>
-                    <th>今日出校</th>
-                    <th>今日出城</th>
+                    <th>相关症状</th>
+                    <th>健康异常</th>
+                    <th>健康码颜色</th>
+                    <th>是否出校</th>
+                    <th>是否出城</th>
                 </tr>
 
                 <c:if test="${not empty requestScope.states}">
@@ -57,18 +58,18 @@
                             <td>${state.stateNum}</td>
                             <td>${state.userNum}</td>
                             <td>${state.stateTime}</td>
-                            <td>${state.temperature}</td>
-                            <td>${state.covid}</td>
-                            <td>${state.likeCovid}</td>
-                            <td>${state.quarantine}</td>
-                            <td>${state.recentArea}</td>
-                            <td>${state.recentCountry}</td>
-                            <td>${state.recentPeople}</td>
-                            <td>${state.symptom}</td>
-                            <td>${state.abnormal}</td>
-                            <td>${state.healthCodeType}</td>
-                            <td>${state.outSchool}</td>
-                            <td>${state.outCity}</td>
+                            <td>${state.temperature == false ? "否" : "是"}</td>
+                            <td>${state.covid == false ? "否" : "是"}</td>
+                            <td>${state.likeCovid == false ? "否" : "是"}</td>
+                            <td>${state.quarantine == 0 ? "未曾隔离" : (state.quarantine == 1 ? "曾隔离，已解除" : (state.quarantine == 2 ? "正在居家隔离" : "正在集中隔离"))}</td>
+                            <td>${state.recentArea == false ? "否" : "是"}</td>
+                            <td>${state.recentCountry == false ? "否" : "是"}</td>
+                            <td>${state.recentPeople == false ? "否" : "是"}</td>
+                            <td>${state.symptom == false ? "否" : "是"}</td>
+                            <td>${state.abnormal == false ? "否" : "是"}</td>
+                            <td>${state.healthCodeType == 0 ? "绿色" : (state.healthCodeType == 1 ? "黄色" : "红色")}</td>
+                            <td>${state.outSchool == false ? "否" : "是"}</td>
+                            <td>${state.outCity == false ? "否" : "是"}</td>
                         </tr>
                     </c:forEach>
                 </c:if>

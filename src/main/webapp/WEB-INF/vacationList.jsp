@@ -11,6 +11,7 @@
     <title>学生请假记录</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
     <jsp:include page="template/navigate.jsp">
@@ -18,20 +19,19 @@
     </jsp:include>
     <div class="container">
         <jsp:include page="template/header.jsp" >
-            <jsp:param name="position" value="请假"/>
+            <jsp:param name="position" value="Vacation"/>
                 <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">
                 <form action="${pageContext.request.contextPath}/vacation/request" method="post">
-                    <label>理由：<input type="text" name="reason" required/></label> <br />
-                    <label>请假日期：<input type="datetime-local" name="startTime" required/></label> <br />
-                    <label>返校日期：<input type="datetime-local" name="endTime" required/></label> <br />
-                    <label>交通工具：<input type="text" name="transport" required></label> <br />
+                    <label>理由：<input type="text" name="reason" required="required"/></label>
+                    <label>请假日期：<input type="datetime-local" name="startTime" required="required"/></label>
+                    <label>返校日期：<input type="datetime-local" name="endTime" required="required"/></label>
+                    <label>交通工具：<input type="text" name="transport" required="required"></label>
                     <input type="submit" value="提交" />
                 </form>
             </c:if>
-            <jsp:include page="template/search.jsp" />
             <table class="chart">
                 <tr class="title">
                     <th>姓名</th>
