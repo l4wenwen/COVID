@@ -39,7 +39,7 @@ public class StateService {
         while(rs.next()) {
             Integer stateNum = rs.getInt("stateNum");
             String userNum = rs.getString("userNum");
-            String strDateFormat = "yyyy-MM-dd HH:mm";
+            String strDateFormat = "yyyy-MM-dd";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
             String stateTime = simpleDateFormat.format(rs.getDate("stateTime"));
             Boolean isTemperature = rs.getBoolean("isTemperature");
