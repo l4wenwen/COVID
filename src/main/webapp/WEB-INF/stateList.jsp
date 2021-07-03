@@ -12,7 +12,6 @@
 <head>
     <title>学生打卡记录</title>
     <%@ include file="template/import.jsp" %>
-    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <%request.setCharacterEncoding("UTF-8");%>
 <body>
@@ -27,9 +26,9 @@
         <div class="content">
             <div class="state">
                     <form action="${pageContext.request.contextPath}/state/list" method="post">
-                        <label>开始日期：<input type="date" name="startTime" required/></label>
-                        <label>结束日期：<input type="date" name="endTime" required/></label>
-                        <input type="submit" value="查询">
+                        <label>开始日期：<input type="date" name="startTime" required class="text-box"/></label>
+                        <label>结束日期：<input type="date" name="endTime" required class="text-box"/></label>
+                        <input type="submit" value="查询" class="submit-button inline-block">
                     </form>
                 <br />
             </div>

@@ -11,7 +11,6 @@
     <title>个人资料</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <jsp:include page="template/import.jsp" />
-    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
 <%request.setCharacterEncoding("UTF-8");%>
@@ -53,7 +52,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="javascript: void(0)" class="info-form">
-                                <label>密码：<input type="password" id="pwd" class="text-box" required/></label><br/>
+                                <label>更改密码：<input type="password" id="pwd" class="text-box" required/></label><br/>
                                 <label>确认密码：<input type="password" id="repwd" class="text-box" required/></label><br/>
                                 <input type="submit" id="changePwd" value="更改密码" class="submit-button"/><br/>
                             </form>
@@ -62,6 +61,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

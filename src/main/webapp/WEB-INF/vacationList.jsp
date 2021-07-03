@@ -11,7 +11,6 @@
     <title>学生请假记录</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file="template/import.jsp" %>
-    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
     <jsp:include page="template/navigate.jsp">
@@ -19,18 +18,35 @@
     </jsp:include>
     <div class="container">
         <jsp:include page="template/header.jsp" >
-            <jsp:param name="position" value="Vacation"/>
+            <jsp:param name="position" value="请假"/>
                 <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">
-                <form action="${pageContext.request.contextPath}/vacation/request" method="post">
-                    <label>理由：<input type="text" name="reason" required="required"/></label>
-                    <label>请假日期：<input type="datetime-local" name="startTime" required="required"/></label>
-                    <label>返校日期：<input type="datetime-local" name="endTime" required="required"/></label>
-                    <label>交通工具：<input type="text" name="transport" required="required"></label>
-                    <input type="submit" value="提交" />
-                </form>
+                <div class="search-area">
+                    <button id="modal-button" class="submit-button inline-block">申请离校</button>
+                </div>
+                <div class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">x</span>
+                            <h2>申请离校</h2>
+                        </div>
+                        <div class="modal-body">
+                            <form action="${pageContext.request.contextPath}/vacation/request" method="post" class="info-form">
+                                <label>请假理由：<input type="text" name="reason" required="required" class="text-box"/></label>
+                                <label>请假日期：<input type="datetime-local" name="startTime" required="required" class="text-box"/></label>
+                                <label>返校日期：<input type="datetime-local" name="endTime" required="required" class="text-box"/></label>
+                                <label>交通工具：<input type="text" name="transport" required="required" class="text-box"></label>
+                                <input type="submit" value="提交" class="submit-button inline-block"/>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+
             </c:if>
             <table class="chart">
                 <tr class="title">

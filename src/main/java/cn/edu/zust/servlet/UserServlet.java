@@ -1,5 +1,6 @@
 package cn.edu.zust.servlet;
 
+import cn.edu.zust.util.MD5Util;
 import cn.edu.zust.vo.User;
 import cn.edu.zust.vo.UserProfile;
 
@@ -45,7 +46,7 @@ public class UserServlet extends BaseServlet {
         if (userNum == null || password == null || "".equals(userNum.trim()) || "".equals(password.trim()))
             message = "账号密码不能为空。";
         else {
-            user = userService.userLogin(userNum, password);
+            user = userService.userLogin(userNum, MD5Util.encrypt(password));
             if (user == null) message = "账号密码错误。";
         }
         if (user == null) {
@@ -81,7 +82,7 @@ public class UserServlet extends BaseServlet {
         String pwd = request.getParameter("pwd");
         String repwd = request.getParameter("repwd");
         String json = "{\"state\": ";
-        if (!isGoodString(pwd) || !isGoodString(repwd) || !pwd.equals(repwd) || !userService.updatePassword(getCurrentUser(request).getUserNum(), pwd)) json += "1";
+        if (!isGoodString(pwd) || !isGoodString(repwd) || !pwd.equals(repwd) || !userService.updatePassword(getCurrentUser(request).getUserNum(), MD5Util.encrypt(pwd))) json += "1";
         else json += "0";
         json += "}";
         PrintWriter out = response.getWriter();

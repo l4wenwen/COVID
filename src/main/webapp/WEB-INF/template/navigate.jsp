@@ -7,7 +7,7 @@
             <h1>${param.type == 0 ? "Admin" : "User"}</h1>
         </div>
         <ul class="nav-item">
-            <a href="${pageContext.request.contextPath}/user/userHome"><li>主页</li></a>
+            <a href="${pageContext.request.contextPath}/user/userHome"><li>${param.type == 2 ? "健康码":"主页"}</li></a>
             <c:if test="${param.type == 0}">
                 <a href="${pageContext.request.contextPath}/user/manager"><li>用户管理</li></a>
             </c:if>

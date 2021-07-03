@@ -26,7 +26,7 @@
 </jsp:include>
 <div class="container">
     <jsp:include page="template/header.jsp" >
-        <jsp:param name="position" value="主页"/>
+        <jsp:param name="position" value="${sessionScope.user.userType == 2 ? '健康码':'主页'}"/>
         <jsp:param name="userName" value="${sessionScope.user.userName}"/>
     </jsp:include>
     <div class="content">

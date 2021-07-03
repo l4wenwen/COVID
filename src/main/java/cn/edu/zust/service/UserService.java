@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public User userLogin(String userNum, String password) throws SQLException {
-        String sql = "SELECT *, isCovid state FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
+        String sql = "SELECT *, isCovid state FROM (SELECT DISTINCT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
                 "WHERE userNum='" + userNum + "' AND password='" + password + "'";
         ResultSet rs = DBUtil.select(sql);
         User user = null;
@@ -61,9 +61,8 @@ public class UserService {
     }
 
     public List<User> getAllUsers(Integer collegeNum) throws SQLException {
-        String sql = "SELECT userName, userNum, collegeNum, sex, isCovid state, " +
-                "telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
-                "WHERE a.userType = 2";
+        String sql = "SELECT userName, userNum, collegeNum, sex, isCovid state,telephone FROM (SELECT DISTINCT user.*, state.isCovid, state.isRecentArea " +
+                "FROM user LEFT JOIN state ON user.userNum = state.userNum) a WHERE a.userType = 2";
         if (collegeNum != 0) {
             sql += " AND collegeNum='" + collegeNum + "'";
         }
@@ -74,11 +73,13 @@ public class UserService {
             String userName = rs.getString("userName");
             boolean sex = rs.getBoolean("sex");
             Integer state = rs.getInt("state");
+            String telephone = rs.getString("telephone");
             User user = new User();
             user.setUserNum(userNum);
             user.setUserName(userName);
             user.setSex(sex);
             user.setState(state);
+            user.setTelephone(telephone);
             users.add(user);
         }
         return users;
@@ -125,7 +126,7 @@ public class UserService {
             if (user.getUserType() == 1) userType = "老师";
             else if (user.getUserType() == 2) userType = "学生";
             userProfile.setUserType(userType);
-            userProfile.setTelephone(user.getTelephone() == null ? "未填写" : user.getTelephone());
+            userProfile.setTelephone(user.getTelephone() == null || "".equals(user.getTelephone().trim()) ? "未填写" : user.getTelephone());
         }
         return userProfile;
     }
