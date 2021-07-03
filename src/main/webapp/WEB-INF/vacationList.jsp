@@ -11,6 +11,7 @@
     <title>学生请假记录</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
     <jsp:include page="template/navigate.jsp">
@@ -24,10 +25,10 @@
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">
                 <form action="${pageContext.request.contextPath}/vacation/request" method="post">
-                    <label>理由：<input type="text" name="reason" /></label> <br />
-                    <label>请假日期：<input type="datetime-local" name="startTime" /></label> <br />
-                    <label>返校日期：<input type="datetime-local" name="endTime" /></label> <br />
-                    <label>交通工具：<input type="text" name="transport"></label> <br />
+                    <label>理由：<input type="text" name="reason" /></label>
+                    <label>请假日期：<input type="datetime-local" name="startTime" /></label>
+                    <label>返校日期：<input type="datetime-local" name="endTime" /></label>
+                    <label>交通工具：<input type="text" name="transport"></label>
                     <input type="submit" value="提交" />
                 </form>
             </c:if>

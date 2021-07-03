@@ -12,6 +12,7 @@
 <head>
     <title>学生打卡记录</title>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <%request.setCharacterEncoding("UTF-8");%>
 <body>

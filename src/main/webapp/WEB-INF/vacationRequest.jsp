@@ -11,6 +11,7 @@
     <title>学生请假</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
 <jsp:include page="template/navigate.jsp">

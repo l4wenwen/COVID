@@ -11,6 +11,7 @@
     <title>用户信息</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <jsp:include page="template/import.jsp" />
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
 <%request.setCharacterEncoding("UTF-8");%>

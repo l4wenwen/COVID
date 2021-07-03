@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>stateList</title>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/state/select" method="post">

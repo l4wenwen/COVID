@@ -13,6 +13,7 @@
 <head>
     <title>addState</title>
     <%@ include file="template/import.jsp" %>
+    <link rel="stylesheet" href="../css/input-submit-for-all.css" />
 </head>
 <%request.setCharacterEncoding("UTF-8");%>
 
