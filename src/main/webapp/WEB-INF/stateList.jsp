@@ -20,14 +20,14 @@
     </jsp:include>
     <div class="container">
         <jsp:include page="template/header.jsp" >
-            <jsp:param name="position" value="State"/>
+            <jsp:param name="position" value="打卡情况"/>
             <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
             <div class="state">
                     <form action="${pageContext.request.contextPath}/state/list" method="post">
-                        <label>开始日期：<input type="date" name="startTime" checked/></label>
-                        <label>结束日期：<input type="date" name="endTime" checked/></label>
+                        <label>开始日期：<input type="date" name="startTime" required/></label>
+                        <label>结束日期：<input type="date" name="endTime" required/></label>
                         <input type="submit" value="查询">
                     </form>
                 <br />

@@ -10,7 +10,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>addState</title>
+    <title>每日打卡</title>
     <%@ include file="template/import.jsp" %>
 </head>
 <%request.setCharacterEncoding("UTF-8");%>
@@ -20,7 +20,7 @@
 </jsp:include>
 <div class="container">
     <jsp:include page="template/header.jsp" >
-        <jsp:param name="position" value="State Request"/>
+        <jsp:param name="position" value="每日打卡"/>
         <jsp:param name="userName" value="${sessionScope.user.userName}"/>
     </jsp:include>
     <div class="content">

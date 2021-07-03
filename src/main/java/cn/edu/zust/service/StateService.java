@@ -80,7 +80,7 @@ public class StateService {
     public Integer getUserState(String userNum, String currentDate) throws SQLException {
         String sql = "SELECT isCovid FROM state WHERE userNum='" + userNum + "' AND stateTime='" + currentDate + "'";
         ResultSet rs = DBUtil.select(sql);
-        Integer isCovid = null;
+        Integer isCovid = 3;
         if (rs != null && rs.next()) {
             isCovid = rs.getInt("isCovid");
         }

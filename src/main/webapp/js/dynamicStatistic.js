@@ -56,29 +56,44 @@ $(document).ready(function() {
                 complete: function () {
                     $("#pwd").val("");
                     $("#repwd").val("");
-                    $("#hide").css("display","block");
+                    $("#hide").css("display", "block");
                 }
             });
         }
     );
 
     $("#modal-button").click(
-        function() {
-            $(".modal").css("display","flex");
+        function () {
+            $(".modal").css("display", "flex");
         }
     );
 
     $(".modal .close").click(
-        function() {
-            $(".modal").css("display","none");
+        function () {
+            $(".modal").css("display", "none");
         }
     );
 
     $(window).click(
-        function(event) {
+        function (event) {
             if (event.target == $(".modal")[0]) {
-                $(".modal").css("display","none");
+                $(".modal").css("display", "none");
             }
         }
     );
+
+    $(".menu-button").click(
+        function () {
+            if ($(".side-nav .items").css("display") == "block") {
+                $(".side-nav").css("width","0");
+                $(".side-nav .items").css("display","none");
+                $(".container").css("padding-left","0");
+            } else {
+                $(".side-nav").css("width","13rem");
+                $(".side-nav .items").css("display","block");
+                $(".container").css("padding-left","13rem");
+            }
+        }
+    );
+
 });

@@ -48,7 +48,7 @@ public class VacationServlet extends BaseServlet {
 
         if (!isGoodString(reason) || !isGoodString(startTime) ||!isGoodString(endTime) || !isGoodString(transport)) {
             request.setAttribute("message", "输入不能为空。");
-            request.getRequestDispatcher("/WEB-INF/vacationRequest.jsp").forward(request, response);
+            request.getRequestDispatcher("/vacation/list").forward(request, response);
         } else {
             Vacation vacation = new Vacation(0, reason, startTime, endTime, getTime(), transport, getCurrentUser(request).getUserNum(), Vacation.STATE_PENDING);
             if (vacationService.submitVacationRequest(getCurrentUser(request), vacation)) {

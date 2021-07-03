@@ -116,7 +116,7 @@ public class UserServlet extends BaseServlet {
     }
 
     public void userinfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        List<User> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsers(getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);

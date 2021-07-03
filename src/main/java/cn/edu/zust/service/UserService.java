@@ -60,10 +60,13 @@ public class UserService {
         return isRegistered;
     }
 
-    public List<User> getAllUsers() throws SQLException {
-        String sql = "SELECT userName, userNum, sex, isCovid state, " +
+    public List<User> getAllUsers(Integer collegeNum) throws SQLException {
+        String sql = "SELECT userName, userNum, collegeNum, sex, isCovid state, " +
                 "telephone FROM (SELECT user.*, state.isCovid, state.isRecentArea FROM user LEFT JOIN state ON user.userNum = state.userNum) a " +
                 "WHERE a.userType = 2";
+        if (collegeNum != 0) {
+            sql += " AND collegeNum='" + collegeNum + "'";
+        }
         ResultSet rs = DBUtil.select(sql);
         List<User> users = new ArrayList<>();
         while(rs.next()) {

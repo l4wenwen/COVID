@@ -1,11 +1,12 @@
 .container {
-	padding-left: 13rem;
+	padding-left: 14rem;
+	transition: ease-in-out .4s;
 }
 
 .header {
 	background: #FFF;
 	padding: 0 2rem;
-	height: 3rem;
+	height: 3.5rem;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
@@ -19,11 +20,22 @@
 	font-size: 2rem;
 }
 
+.header .menu-button {
+	cursor: pointer;
+}
+
 .content {
 	width: 80%;
-	min-height: 100vh;
+	min-height: 88vh;
 	background: #FFF;
 	margin: 1.2rem auto;
-	padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-	box-shadow: 0 0.2rem 1rem 0rem #ccc;
+	padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+	box-shadow: 0 0.2rem 1rem 0 #ccc;
+}
+
+.health-code {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-start;
+	align-items: center;
 }

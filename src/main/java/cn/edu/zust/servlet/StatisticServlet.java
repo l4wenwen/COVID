@@ -20,14 +20,14 @@ public class StatisticServlet extends BaseServlet {
     }
 
     public void all(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        Statistic statistic = statisticService.getAllStatistic(getDate());
+        Statistic statistic = statisticService.getAllStatistic(getDate(), getCurrentUser(request).getCollegeNum());
         request.setAttribute("statistic", statistic);
         request.getRequestDispatcher("/WEB-INF/userHome.jsp").forward(request, response);
     }
 
     public void filled(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         response.setCharacterEncoding("UTF-8");
-        List<User> users = statisticService.getFilledUsers(getDate());
+        List<User> users = statisticService.getFilledUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);
@@ -35,7 +35,7 @@ public class StatisticServlet extends BaseServlet {
 
     public void highrisk(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         response.setCharacterEncoding("UTF-8");
-        List<User> users = statisticService.getHighRiskUsers(getDate());
+        List<User> users = statisticService.getHighRiskUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);
@@ -43,7 +43,7 @@ public class StatisticServlet extends BaseServlet {
 
     public void riskarea(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         response.setCharacterEncoding("UTF-8");
-        List<User> users = statisticService.getHighRiskAreaUsers(getDate());
+        List<User> users = statisticService.getHighRiskAreaUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);

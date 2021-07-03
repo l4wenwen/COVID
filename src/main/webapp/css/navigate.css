@@ -1,11 +1,12 @@
 .side-nav {
-	width: 13rem;
+	width: 14rem;
 	height: 100%;
 	position: fixed;
 	background: #FFF;
 	display: flex;
 	flex-flow: column nowrap;
 	font-weight: 300;
+	transition: ease-in-out .4s;
 }
 
 .side-nav .logo {

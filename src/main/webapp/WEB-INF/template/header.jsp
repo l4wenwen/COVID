@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="header">
     <div class="menu">
-        <i class="fa fa-bars fa-lg"></i>
+        <i class="fa fa-bars fa-lg menu-button"></i>
         <span style="margin-left: 5px;">${param.position}</span>
     </div>
-    <div class="title">COVID</div>
+    <div class="title">云战役</div>
     <div class="icon">${param.userName}</div>
 </div>

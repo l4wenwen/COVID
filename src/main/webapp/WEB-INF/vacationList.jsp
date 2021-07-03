@@ -18,19 +18,20 @@
     </jsp:include>
     <div class="container">
         <jsp:include page="template/header.jsp" >
-            <jsp:param name="position" value="Vacation"/>
+            <jsp:param name="position" value="请假"/>
                 <jsp:param name="userName" value="${sessionScope.user.userName}"/>
         </jsp:include>
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">
                 <form action="${pageContext.request.contextPath}/vacation/request" method="post">
-                    <label>理由：<input type="text" name="reason" /></label> <br />
-                    <label>请假日期：<input type="datetime-local" name="startTime" /></label> <br />
-                    <label>返校日期：<input type="datetime-local" name="endTime" /></label> <br />
-                    <label>交通工具：<input type="text" name="transport"></label> <br />
+                    <label>理由：<input type="text" name="reason" required/></label> <br />
+                    <label>请假日期：<input type="datetime-local" name="startTime" required/></label> <br />
+                    <label>返校日期：<input type="datetime-local" name="endTime" required/></label> <br />
+                    <label>交通工具：<input type="text" name="transport" required></label> <br />
                     <input type="submit" value="提交" />
                 </form>
             </c:if>
+            <jsp:include page="template/search.jsp" />
             <table class="chart">
                 <tr class="title">
                     <th>姓名</th>
