@@ -64,7 +64,7 @@
                             <td>${state.recentArea == false ? "否" : "是"}</td>
                             <td>${state.recentCountry == false ? "否" : "是"}</td>
                             <td>${state.recentPeople == false ? "否" : "是"}</td>
-                            <td>${state.symptom == false ? "无" : "有"}</td>
+                            <td>${state.symptom == false ? "否" : "是"}</td>
                             <td>${state.abnormal == false ? "否" : "是"}</td>
                             <td>${state.healthCodeType == 0 ? "绿色" : (state.healthCodeType == 1 ? "黄色" : "红色")}</td>
                             <td>${state.outSchool == false ? "否" : "是"}</td>
