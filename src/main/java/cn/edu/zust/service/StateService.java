@@ -77,6 +77,16 @@ public class StateService {
         return executeStateQuery(sql);
     }
 
+    public Integer getUserState(String userNum, String currentDate) throws SQLException {
+        String sql = "SELECT isCovid FROM state WHERE userNum='" + userNum + "' AND stateTime='" + currentDate + "'";
+        ResultSet rs = DBUtil.select(sql);
+        Integer isCovid = null;
+        if (rs != null && rs.next()) {
+            isCovid = rs.getInt("isCovid");
+        }
+        return isCovid;
+    }
+
 /*
     public List<State> getStateListByUserNum(String userNum) throws SQLException {
         String sql = "SELECT * FROM `state` WHERE `userNum` = \"" + userNum + "\";";

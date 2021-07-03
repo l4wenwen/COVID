@@ -90,4 +90,10 @@ public class StateServlet extends BaseServlet {
         request.setAttribute("states", states);
         request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
     }
+
+    public void getstate(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String userNum = ((User)request.getSession().getAttribute("user")).getUserNum();
+        request.setAttribute("state", stateService.getUserState(userNum, getDate()));
+        request.getRequestDispatcher("/WEB-INF/userHome.jsp").forward(request, response);
+    }
 }

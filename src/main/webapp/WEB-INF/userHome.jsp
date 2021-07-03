@@ -18,6 +18,9 @@
 <c:if test="${sessionScope.user.userType != 2 && requestScope.statistic == null}">
     <c:redirect url="/statistic/all" />
 </c:if>
+<c:if test="${sessionScope.user.userType == 2 && requestScope.state == null}">
+    <c:redirect url="/state/getstate" />
+</c:if>
 <jsp:include page="template/navigate.jsp">
     <jsp:param name="type" value="${sessionScope.user.userType}"/>
 </jsp:include>
@@ -38,7 +41,7 @@
                     var qrcode = new QRCode(document.getElementById("qrcode"), {
                         width : 150,
                         height : 150,
-                        colorDark : "${sessionScope.user.state == null ? "#777777" : (sessionScope.user.state == 1 ? "#FF4646" : "#5E8B7E")}",
+                        colorDark : "${requestScope.state == null ? "#777777" : (requestScope.state == 1 ? "#FF4646" : "#5E8B7E")}",
                         colorLight : "#FFF",
                         correctLevel : QRCode.CorrectLevel.H
                     });
