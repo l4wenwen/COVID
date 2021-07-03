@@ -60,10 +60,6 @@
                             <td>${state.temperature == false ? "否" : "是"}</td>
                             <td>${state.covid == false ? "否" : "是"}</td>
                             <td>${state.likeCovid == false ? "否" : "是"}</td>
-                            未曾隔离
-                            曾隔离，已解除
-                            正在居家隔离
-                            正在集中隔离
                             <td>${state.quarantine == 0 ? "未曾隔离" : (state.quarantine == 1 ? "曾隔离，已解除" : (state.quarantine == 2 ? "正在居家隔离" : "正在集中隔离"))}</td>
                             <td>${state.recentArea == false ? "否" : "是"}</td>
                             <td>${state.recentCountry == false ? "否" : "是"}</td>
