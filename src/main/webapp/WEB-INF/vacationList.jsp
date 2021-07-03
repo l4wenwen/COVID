@@ -25,10 +25,10 @@
         <div class="content">
             <c:if test="${sessionScope.user.userType == 2}">
                 <form action="${pageContext.request.contextPath}/vacation/request" method="post">
-                    <label>理由：<input type="text" name="reason" /></label>
-                    <label>请假日期：<input type="datetime-local" name="startTime" /></label>
-                    <label>返校日期：<input type="datetime-local" name="endTime" /></label>
-                    <label>交通工具：<input type="text" name="transport"></label>
+                    <label>理由：<input type="text" name="reason" required="required"/></label>
+                    <label>请假日期：<input type="datetime-local" name="startTime" required="required"/></label>
+                    <label>返校日期：<input type="datetime-local" name="endTime" required="required"/></label>
+                    <label>交通工具：<input type="text" name="transport" required="required"></label>
                     <input type="submit" value="提交" />
                 </form>
             </c:if>
