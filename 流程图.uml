@@ -1,0 +1,39 @@
+@startuml
+
+start
+:用户登录;
+if (账号密码校验) then (true)
+    :登录成功;
+    if (用户为学生) then (true)
+        fork
+            :选择打卡信息;
+            :每日打卡;
+        fork again
+            :选择查询日期;
+            :查询自己的打卡记录;
+        fork again
+            :填写请假信息;
+            :提交请假信息，生成请假记录;
+            if (老师同意请假) then (true)
+                :请假成功;
+            else (false)
+                :请假失败;
+            endif
+        end fork
+    else if (用户为老师) then (true)
+        fork
+            :查询学生的请假情况;
+            :审批学生的请假情况(同意/拒绝);
+        fork again
+            :选择查询日期;
+            :查询所在学院的打卡记录;
+        end fork
+    else if (用户为管理员) then (true)
+            :选择查询日期;
+            :查询所有打卡记录;
+    endif
+else (false)
+    :密码错误;
+endif
+stop
+@enduml
