@@ -20,7 +20,7 @@ public class StateServlet extends BaseServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.print("StateServlet doGet:");
         String methodName = getMethod(request.getRequestURI());
-        System.out.println("methodName1:" + methodName);
+//        System.out.println("methodName1:" + methodName);
         if (!methodName.equals("request") && !methodName.equals("list") ) {
             doPost(request, response);
         } else {
@@ -29,46 +29,46 @@ public class StateServlet extends BaseServlet {
                         HttpServletRequest.class, HttpServletResponse.class);
                 methodName = "state" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
             } catch (NoSuchMethodException e) {
-                System.out.println("doGet: error");
+//                System.out.println("doGet: error");
                 methodName = "error";
             }
-            System.out.println("methodName2:" + methodName);
+//            System.out.println("methodName2:" + methodName);
             request.getRequestDispatcher("/WEB-INF/" + methodName + ".jsp").forward(request, response);
         }
     }
 
     public void request(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("request: ");
+//        System.out.println("request: ");
         User user = (User) request.getSession().getAttribute("user");
         String userNum = user.getUserNum();
         String stateTime = getDate();
         boolean isTemperature = Boolean.parseBoolean(request.getParameter("isTemperature"));
-        System.out.println("isTemperature = " + isTemperature);
+//        System.out.println("isTemperature = " + isTemperature);
         boolean isCovid = Boolean.parseBoolean(request.getParameter("isCovid"));
-        System.out.println("isCovid = " + isCovid);
+//        System.out.println("isCovid = " + isCovid);
         boolean isLikeCovid = Boolean.parseBoolean(request.getParameter("isLikeCovid"));
-        System.out.println("isLikeCovid = " + isLikeCovid);
+//        System.out.println("isLikeCovid = " + isLikeCovid);
         Integer quarantine = Integer.parseInt(request.getParameter("quarantine"));
-        System.out.println("quarantine = " + quarantine);
+//        System.out.println("quarantine = " + quarantine);
         boolean isRecentArea = Boolean.parseBoolean(request.getParameter("isRecentArea"));
-        System.out.println("isRecentArea = " + isRecentArea);
+//        System.out.println("isRecentArea = " + isRecentArea);
         boolean isRecentCountry = Boolean.parseBoolean(request.getParameter("isRecentCountry"));
-        System.out.println("isRecentCountry = " + isRecentCountry);
+//        System.out.println("isRecentCountry = " + isRecentCountry);
         boolean isRecentPeople = Boolean.parseBoolean(request.getParameter("isRecentPeople"));
-        System.out.println("isRecentPeople = " + isRecentPeople);
+//        System.out.println("isRecentPeople = " + isRecentPeople);
         boolean isSymptom = Boolean.parseBoolean(request.getParameter("isSymptom"));
-        System.out.println("isSymptom = " + isSymptom);
+//        System.out.println("isSymptom = " + isSymptom);
         boolean isAbnormal = Boolean.parseBoolean(request.getParameter("isAbnormal"));
-        System.out.println("isAbnormal = " + isAbnormal);
+//        System.out.println("isAbnormal = " + isAbnormal);
         Integer healthCodeType = Integer.parseInt(request.getParameter("healthCodeType"));
-        System.out.println("healthCodeType = " + healthCodeType);
+//        System.out.println("healthCodeType = " + healthCodeType);
         boolean isOutSchool = Boolean.parseBoolean(request.getParameter("isOutSchool"));
-        System.out.println("isOutSchool = " + isOutSchool);
+//        System.out.println("isOutSchool = " + isOutSchool);
         boolean isOutCity = Boolean.parseBoolean(request.getParameter("isOutCity"));
-        System.out.println("isOutCity = " + isOutCity);
+//        System.out.println("isOutCity = " + isOutCity);
         if (!isGoodString(userNum) || !isGoodString(stateTime)) {
             request.setAttribute("message", "输入不能为空。");
-            System.out.println("输入不能为空。");
+//            System.out.println("输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
         } else {
             stateService.delState(userNum);
@@ -76,11 +76,11 @@ public class StateServlet extends BaseServlet {
                     isRecentArea, isRecentCountry, isRecentPeople, isSymptom, isAbnormal, healthCodeType, isOutSchool, isOutCity);
             Integer cnt = stateService.addState(state);
             if (cnt == 1) {
-                System.out.println("提交请求成功。");
+//                System.out.println("提交请求成功。");
                 request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
             } else {
                 request.setAttribute("message", "提交请求失败。");
-                System.out.println("提交请求失败。");
+//                System.out.println("提交请求失败。");
                 request.getRequestDispatcher("/WEB-INF/stateRequest.jsp").forward(request, response);
             }
         }

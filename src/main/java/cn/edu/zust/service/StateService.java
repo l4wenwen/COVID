@@ -72,7 +72,7 @@ public class StateService {
             sql = "SELECT * FROM state WHERE userNum IN (SELECT userNum FROM user WHERE collegeNum='" + collegeNum + "')";
         }
         Date date = new Date();
-        System.out.println(date + " selectState: sql = " + sql);
+//        System.out.println(date + " selectState: sql = " + sql);
         return executeStateQuery(sql);
     }
 
