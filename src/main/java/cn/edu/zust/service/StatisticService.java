@@ -19,12 +19,14 @@ public class StatisticService {
             boolean sex = rs.getInt("sex") == 1;
             String telephone = rs.getString("telephone");
             Integer state = rs.getInt("state");
+            Integer collegeNum = rs.getInt("collegeNum");
             User user = new User();
             user.setUserName(userName);
             user.setUserNum(userNum);
             user.setSex(sex);
             user.setTelephone(telephone);
             user.setState(state);
+            user.setCollegeNum(collegeNum);
             users.add(user);
         }
         return users;
@@ -88,5 +90,29 @@ public class StatisticService {
             sql += " AND collegeNum='" + collegeNum + "'";
         List<User> users = new ArrayList<>();
         return executeStatisticQuery(sql);
+    }
+
+    public String getCollegeOption() throws SQLException {
+        String sql = "SELECT * FROM college WHERE collegeNum <> 0";
+        ResultSet rs = DBUtil.select(sql);
+        String collegeOption = "";
+        while(rs.next()) {
+            Integer collegeNum = rs.getInt("collegeNum");
+            String collegeName = rs.getString("collegeName");
+            collegeOption += "<option value='" + collegeNum + "'>" + collegeName + "</option>";
+        }
+        return collegeOption;
+    }
+
+    public String getMajorOption(Integer collegeNum) throws SQLException {
+        String sql = "SELECT * FROM major WHERE collegeNum='" + collegeNum + "'";
+        ResultSet rs = DBUtil.select(sql);
+        String majorOption = "";
+        while(rs.next()) {
+            Integer majorNum = rs.getInt("majorNum");
+            String majorName = rs.getString("majorName");
+            majorOption += "<option value='" + majorNum + "'>" + majorName + "</option>";
+        }
+        return majorOption;
     }
 }

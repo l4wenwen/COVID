@@ -62,15 +62,14 @@ public class StateService {
         return states;
     }
 
-    public List<State> selectState(String startTime, String endTime, String collegeName, Integer userType, String userNum) throws SQLException {
+    public List<State> selectState(String startTime, String endTime, Integer collegeNum, Integer userType, String userNum) throws SQLException {
         String sql = "SELECT * FROM `State` WHERE stateTime BETWEEN \"" + startTime + "\" AND \"" + endTime + "\"";
         if (userType == 0) {
             sql += ";";
         } else if (userType == 2) {
             sql += " AND `userNum` = \"" + userNum + "\";";
         } else {
-            sql = "SELECT * FROM `state` WHERE "+ "`collegeName` = \"" + collegeName + "\" AND `stateTime` BETWEEN "
-                    + startTime + " AND " + endTime + ";";
+            sql = "SELECT * FROM state WHERE userNum IN (SELECT userNum FROM user WHERE collegeNum='" + collegeNum + "')";
         }
         Date date = new Date();
         System.out.println(date + " selectState: sql = " + sql);

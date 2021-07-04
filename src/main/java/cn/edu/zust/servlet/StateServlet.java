@@ -91,13 +91,13 @@ public class StateServlet extends BaseServlet {
         String endTime = request.getParameter("endTime");
         User user = (User) request.getSession().getAttribute("user");
         String userNum = user.getUserNum();
-        String collegeName = userService.getCollegeNameByUserNum(userNum);
-        if (!isGoodString(startTime) || !isGoodString(endTime) || !isGoodString(collegeName)) {
+        Integer collegeNum = user.getCollegeNum();
+        if (!isGoodString(startTime) || !isGoodString(endTime)) {
             request.setAttribute("message", "输入不能为空。");
             request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
             return;
         }
-        List<State> states = stateService.selectState(startTime, endTime, collegeName, user.getUserType(), user.getUserNum());
+        List<State> states = stateService.selectState(startTime, endTime, collegeNum, user.getUserType(), user.getUserNum());
         request.setAttribute("states", states);
         request.getRequestDispatcher("/WEB-INF/stateList.jsp").forward(request, response);
     }

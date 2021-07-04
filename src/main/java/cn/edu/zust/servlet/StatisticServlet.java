@@ -16,6 +16,8 @@ import java.util.List;
 public class StatisticServlet extends BaseServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         doPost(request, response);
     }
 
@@ -26,7 +28,6 @@ public class StatisticServlet extends BaseServlet {
     }
 
     public void filled(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        response.setCharacterEncoding("UTF-8");
         List<User> users = statisticService.getFilledUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
@@ -34,7 +35,6 @@ public class StatisticServlet extends BaseServlet {
     }
 
     public void highrisk(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-        response.setCharacterEncoding("UTF-8");
         List<User> users = statisticService.getHighRiskUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
@@ -42,11 +42,23 @@ public class StatisticServlet extends BaseServlet {
     }
 
     public void riskarea(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-        response.setCharacterEncoding("UTF-8");
         List<User> users = statisticService.getHighRiskAreaUsers(getDate(), getCurrentUser(request).getCollegeNum());
         String json = convertUserToJSON(users);
         PrintWriter out = response.getWriter();
         out.print(json);
+    }
+
+    public void college(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        String collegeOption = statisticService.getCollegeOption();
+        PrintWriter out = response.getWriter();
+        out.print(collegeOption);
+    }
+
+    public void major(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        String collegeNum = request.getParameter("collegeNum");
+        String majorOption = statisticService.getMajorOption(Integer.parseInt(collegeNum));
+        PrintWriter out = response.getWriter();
+        out.print(majorOption);
     }
 
     private User getCurrentUser(HttpServletRequest request) {

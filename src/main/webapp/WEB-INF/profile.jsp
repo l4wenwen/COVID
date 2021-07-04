@@ -37,7 +37,7 @@
                 </c:if>
                 类型：${requestScope.userProfile.userType}<br/>
                 <form action="${pageContext.request.contextPath}/user/update" method="post" class="info-form-row">
-                    手机号码：<input type="text" value="${requestScope.userProfile.telephone}" id="telephone" name="telephone" class="text-box" pattern="^[1][3,4,5,7,8][0-9]{9}$" required disabled>
+                    手机号码：<input type="text" value="${requestScope.userProfile.telephone}" id="telephone" name="telephone" class="text-box" pattern="^[1][3,4,5,7,8][0-9]{9}$" maxlength="11" required disabled>
                     <button class="submit-button inline-block" id="btn-tel-require" >申请修改</button>
                     <input type="submit" value="提交" class="submit-button inline-block" id="btn-tel" style="display: none"/>
                 </form>
@@ -52,8 +52,8 @@
                         </div>
                         <div class="modal-body">
                             <form action="javascript: void(0)" class="info-form">
-                                <label>更改密码：<input type="password" id="pwd" class="text-box" required/></label><br/>
-                                <label>确认密码：<input type="password" id="repwd" class="text-box" required/></label><br/>
+                                <label>更改密码：<input type="password" id="pwd" class="text-box" maxlength="20" required/></label><br/>
+                                <label>确认密码：<input type="password" id="repwd" class="text-box" maxlength="20" required/></label><br/>
                                 <input type="submit" id="changePwd" value="更改密码" class="submit-button"/><br/>
                             </form>
                         </div>
@@ -77,7 +77,37 @@
                 return false;
             }
         }
-    )
+    );
+
+    $("#changePwd").click(
+        function () {
+            $.ajax({
+                url: "/user/changePassword",
+                type: "POST",
+                dateType: "json",
+                data: {
+                    pwd: $("#pwd").val(),
+                    repwd: $("#repwd").val()
+                },
+                success: function (res) {
+                    res = JSON.parse(res);
+                    if (res.state == 0) {
+                        alert("修改成功");
+                    } else {
+                        alert("修改失败");
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function () {
+                    $("#pwd").val("");
+                    $("#repwd").val("");
+                    $("#hide").css("display", "block");
+                }
+            });
+        }
+    );
 </script>
 </body>
 </html>

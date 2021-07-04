@@ -35,10 +35,10 @@
                         </div>
                         <div class="modal-body">
                             <form action="${pageContext.request.contextPath}/vacation/request" method="post" class="info-form">
-                                <label>请假理由：<input type="text" name="reason" required="required" class="text-box"/></label>
+                                <label>请假理由：<input type="text" name="reason" required="required" class="text-box" maxlength="20"/></label>
                                 <label>请假日期：<input type="datetime-local" name="startTime" required="required" class="text-box"/></label>
                                 <label>返校日期：<input type="datetime-local" name="endTime" required="required" class="text-box"/></label>
-                                <label>交通工具：<input type="text" name="transport" required="required" class="text-box"></label>
+                                <label>交通工具：<input type="text" name="transport" required="required" class="text-box" maxlength="20"></label>
                                 <input type="submit" value="提交" class="submit-button inline-block"/>
                             </form>
                         </div>

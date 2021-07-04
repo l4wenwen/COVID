@@ -24,8 +24,7 @@ public class UserServlet extends BaseServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String methodName = getMethod(request.getRequestURI());
-        if ("logout".equals(methodName) || "update".equals(methodName) || "profile".equals(methodName) || "changePassword".equals(methodName)
-            || "manager".equals(methodName) || "userInfo".equals(methodName)) {
+        if (!"login".equals(methodName)) {
             doPost(request, response);
         } else {
             try {
@@ -58,24 +57,48 @@ public class UserServlet extends BaseServlet {
         }
     }
 
-    public void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        String userNum = request.getParameter("account");
-        String password = request.getParameter("password");
+    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        String userNum = request.getParameter("num");
+        String userName = request.getParameter("name");
+        String sex = request.getParameter("sex");
+        String userType = request.getParameter("type");
+        String collegeNum = request.getParameter("college");
+        String majorNum = request.getParameter("major");
         String message = "", directURI = "/WEB-INF/";
         boolean isRegistered = false;
-        if (userNum == null || password == null || "".equals(userNum.trim()) || "".equals(password.trim()))
-            message = "账号密码不能为空。";
-        else {
-            isRegistered = userService.userRegister(userNum, password);
-            if (!isRegistered) message = "账号已存在。";
-        }
-
-        if (isRegistered) directURI += "login.jsp";
-        else {
-            request.setAttribute("message", message);
-            directURI += "register.jsp";
-        }
-        request.getRequestDispatcher(directURI).forward(request, response);
+        do {
+            if (!isGoodString(userName) || !isGoodString(userNum) || !isGoodString(sex) || !isGoodString(userType)) {
+                message = "信息不能为空。";
+                break;
+            }
+            if (userNum.length() != 8) {
+                message = "学号长度为8位";
+                break;
+            }
+            Integer iUserType = Integer.parseInt(userType);
+            if (iUserType == 0) {
+                collegeNum = majorNum = null;
+            } else if (iUserType == 1) {
+                if (!isGoodString(collegeNum)) {
+                    message = "学院未选择";
+                    break;
+                }
+                majorNum = null;
+            } else {
+                if (!isGoodString(collegeNum) || !isGoodString(majorNum)) {
+                    message = "学院或专业未选择";
+                    break;
+                }
+            }
+            isRegistered = userService.addUser(userNum, userName, sex, userType, collegeNum, majorNum);
+            if (!isRegistered) {
+                message = "账号已存在。";
+                break;
+            }
+            message = "添加成功";
+        } while (false);
+        PrintWriter out = response.getWriter();
+        out.print(message);
     }
 
     public void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {

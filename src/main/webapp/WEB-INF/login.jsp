@@ -21,11 +21,11 @@
         <form action="${pageContext.request.contextPath}/user/login" method="post">
             <div class="field">
                 <span class="fa fa-user"></span>
-                <input type="text" name="account" required placeholder="学号">
+                <input type="text" name="account" required placeholder="学号" maxlength="8">
             </div>
             <div class="field space">
                 <span class="fa fa-lock"></span>
-                <input type="password" name="password" class="pass-key" required placeholder="密码">
+                <input type="password" name="password" class="pass-key" required placeholder="密码" maxlength="20">
                 <span class="show">显示</span>
             </div>
             <div class="pass">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="signup">没有账号？
-            <a href="${pageContext.request.contextPath}/user/register">注册</a>
+            <a href="javascript: alert('不开放注册');">注册</a>
         </div>
     </div>
 </div>

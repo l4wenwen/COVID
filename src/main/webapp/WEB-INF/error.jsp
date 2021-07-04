@@ -73,7 +73,7 @@
 </head>
 <body>
 <div class="container" id="watch">
-    <h1>出错了！QAQ</h1>
+    <h1>出错了！</h1>
 </div>
 <div class="search-box">
     <input type="text" class="search-text" id="text">

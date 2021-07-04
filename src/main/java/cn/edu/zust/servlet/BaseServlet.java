@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -69,10 +70,10 @@ public class BaseServlet extends HttpServlet {
         return str != null && !"".equals(str.trim());
     }
 
-    protected String convertUserToJSON(List<User> users) {
+    protected String convertUserToJSON(List<User> users) throws SQLException {
         StringBuilder json = new StringBuilder("[");
         for(User user : users) {
-            json.append("{\"userName\": \"").append(user.getUserName()).append("\", \"userNum\": \"").append(user.getUserNum()).append("\", \"sex\": \"").append(user.isSex() ? "男" : "女").append("\", \"state\": \"").append(user.getState()==null?"未填写":(user.getState()==1?"高危":"正常")).append("\", \"telephone\": \"").append(user.getTelephone()==null?"未填写":user.getTelephone()).append("\"},");
+            json.append("{\"userName\": \"").append(user.getUserName()).append("\", \"collegeName\": \"").append(userService.getCollegeNameById(user.getCollegeNum())).append("\", \"userNum\": \"").append(user.getUserNum()).append("\", \"sex\": \"").append(user.isSex() ? "男" : "女").append("\", \"state\": \"").append(user.getState()==null?"未填写":(user.getState()==1?"高危":"正常")).append("\", \"telephone\": \"").append((user.getTelephone()==null || "".equals(user.getTelephone().trim()))?"未填写":user.getTelephone()).append("\"},");
         }
         json.delete(json.lastIndexOf(","), json.lastIndexOf(",")+1);
         json.append("]");

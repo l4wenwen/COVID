@@ -35,19 +35,51 @@
             <jsp:include page="template/userChart.jsp" />
         </c:if>
         <c:if test="${sessionScope.user.userType == 2}">
+            <style>
+                .health-info {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    align-items: flex-start;
+                }
+
+                .health-info p {
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                }
+
+                #qrcode {
+                    border: 0.5rem solid #000;
+                    padding: 0.5rem;
+                    margin-top: 0.5rem;
+                }
+
+                .health-code {
+                    padding: 0.725rem;
+                    height: 84vh;
+                    border: 2px solid #EEE;
+                }
+
+                #time {
+                    margin-top: 1.5rem;
+                }
+            </style>
             <div class="health-code">
+                <div class="health-info">
+                    <p>姓名：${sessionScope.user.userName}</p>
+                    <p>状态：${requestScope.state == 3 ? '未填写' : (requestScope.state == 1 ? '高危' : '正常')}</p>
+                </div>
                 <h1><div id="time"></div></h1>
-                <div id="qrcode"></div>
+                <div id="qrcode" style="border-color: ${requestScope.state == 3 ? '#777777' : (requestScope.state == 1 ? '#FF4646' : '#83A95C')}"></div>
             </div>
             <script type="text/javascript">
                 var qrcode = new QRCode(document.getElementById("qrcode"), {
-                    width : 300,
-                    height : 300,
+                    width : 265,
+                    height : 265,
                     colorDark : "${requestScope.state == 3 ? "#777777" : (requestScope.state == 1 ? "#FF4646" : "#83A95C")}",
                     colorLight : "#FFF",
                     correctLevel : QRCode.CorrectLevel.H
                 });
-                qrcode.makeCode("${sessionScope.user.userNum}, Function not yet perfect.");
+                qrcode.makeCode("${sessionScope.user.userNum}, ${requestScope.state}, Function not yet perfect.");
 
                 function fix(s) {
                     s = s.toString();

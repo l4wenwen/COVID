@@ -1,6 +1,7 @@
 package cn.edu.zust.service;
 
 import cn.edu.zust.util.DBUtil;
+import cn.edu.zust.util.MD5Util;
 import cn.edu.zust.vo.User;
 import cn.edu.zust.vo.UserProfile;
 import cn.edu.zust.vo.Vacation;
@@ -74,12 +75,14 @@ public class UserService {
             boolean sex = rs.getBoolean("sex");
             Integer state = rs.getInt("state");
             String telephone = rs.getString("telephone");
+            Integer iCollegeNum = rs.getInt("collegeNum");
             User user = new User();
             user.setUserNum(userNum);
             user.setUserName(userName);
             user.setSex(sex);
             user.setState(state);
             user.setTelephone(telephone);
+            user.setCollegeNum(iCollegeNum);
             users.add(user);
         }
         return users;
@@ -93,7 +96,7 @@ public class UserService {
     public String getCollegeNameById(Integer collegeNum) throws SQLException {
         String sql = "SELECT * FROM college WHERE collegeNum='" + collegeNum + "'";
         ResultSet rs = DBUtil.select(sql);
-        String collegeName = "NULL";
+        String collegeName = "未分配";
         if (rs != null && rs.next()) {
             collegeName = rs.getString("collegeName");
         }
@@ -154,18 +157,27 @@ public class UserService {
         return teacherNum;
     }
 
-    public String getCollegeNameByUserNum(String userNum) throws SQLException {
-        String sql = "SELECT `collegeNum` FROM `user` WHERE userNum = \"" + userNum + "\";";
-        ResultSet rs = DBUtil.select(sql);
-        Integer collegeNum = -1;
-        if (rs != null && rs.next()) {
-            collegeNum = rs.getInt("collegeNum");
-        }
-        return getCollegeNameById(collegeNum);
-    }
-
     public boolean updateTelephone(String userNum, String telephone) {
         String sql = "UPDATE user SET telephone='" + telephone + "' WHERE userNum='" + userNum + "'";
         return DBUtil.update(sql) == 1;
+    }
+
+    public boolean addUser(String userNum, String userName, String sex, String userType, String collegeNum, String majorNum) throws SQLException {
+        String checkSql = "SELECT * FROM user WHERE userNum='" + userNum + "'";
+        ResultSet rs = DBUtil.select(checkSql);
+        if (rs != null && rs.next()) return false;
+        String updateSql = "INSERT INTO user(userNum, collegeNum, majorNum, classNum, userType, userName, password, sex) VALUES('" +
+                userNum + "','" + collegeNum + "','" + majorNum + "','" + 1 + "','" + userType + "','" + userName + "','" + MD5Util.encrypt(userNum.substring(4)) +
+                "','" + sex + "')";
+        if (Integer.parseInt(userType) == 0) {
+            updateSql = "INSERT INTO user(userNum, userType, userName, password, sex) VALUES('" +
+                    userNum + "','" + userType + "','" + userName + "','" + MD5Util.encrypt(userNum.substring(4)) +
+                    "','" + sex + "')";
+        } else if (Integer.parseInt(userType) == 1) {
+            updateSql = "INSERT INTO user(userNum, collegeNum, userType, userName, password, sex) VALUES('" +
+                    userNum + "','" + collegeNum + "','" + userType + "','" + userName + "','" + MD5Util.encrypt(userNum.substring(4)) +
+                    "','" + sex + "')";
+        }
+        return DBUtil.update(updateSql) == 1;
     }
 }
