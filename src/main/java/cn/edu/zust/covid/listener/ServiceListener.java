@@ -1,11 +1,10 @@
-package cn.edu.zust.listener;
+package cn.edu.zust.covid.listener;
 
-import cn.edu.zust.service.StateService;
-import cn.edu.zust.service.StatisticService;
-import cn.edu.zust.service.UserService;
-import cn.edu.zust.service.VacationService;
-import cn.edu.zust.util.DBUtil;
-import cn.edu.zust.vo.Statistic;
+import cn.edu.zust.covid.service.StateService;
+import cn.edu.zust.covid.service.StatisticService;
+import cn.edu.zust.covid.service.UserService;
+import cn.edu.zust.covid.service.VacationService;
+import cn.edu.zust.covid.util.DBUtil;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

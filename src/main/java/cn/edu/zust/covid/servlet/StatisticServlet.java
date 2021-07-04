@@ -1,7 +1,7 @@
-package cn.edu.zust.servlet;
+package cn.edu.zust.covid.servlet;
 
-import cn.edu.zust.vo.Statistic;
-import cn.edu.zust.vo.User;
+import cn.edu.zust.covid.vo.Statistic;
+import cn.edu.zust.covid.vo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

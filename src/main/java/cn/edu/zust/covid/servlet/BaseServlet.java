@@ -1,10 +1,10 @@
-package cn.edu.zust.servlet;
+package cn.edu.zust.covid.servlet;
 
-import cn.edu.zust.service.StateService;
-import cn.edu.zust.service.StatisticService;
-import cn.edu.zust.service.UserService;
-import cn.edu.zust.service.VacationService;
-import cn.edu.zust.vo.User;
+import cn.edu.zust.covid.service.StateService;
+import cn.edu.zust.covid.service.StatisticService;
+import cn.edu.zust.covid.service.UserService;
+import cn.edu.zust.covid.service.VacationService;
+import cn.edu.zust.covid.vo.User;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

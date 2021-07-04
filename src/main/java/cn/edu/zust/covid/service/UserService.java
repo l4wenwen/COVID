@@ -1,10 +1,9 @@
-package cn.edu.zust.service;
+package cn.edu.zust.covid.service;
 
-import cn.edu.zust.util.DBUtil;
-import cn.edu.zust.util.MD5Util;
-import cn.edu.zust.vo.User;
-import cn.edu.zust.vo.UserProfile;
-import cn.edu.zust.vo.Vacation;
+import cn.edu.zust.covid.util.DBUtil;
+import cn.edu.zust.covid.util.MD5Util;
+import cn.edu.zust.covid.vo.User;
+import cn.edu.zust.covid.vo.UserProfile;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

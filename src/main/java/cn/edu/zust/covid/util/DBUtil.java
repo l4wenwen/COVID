@@ -1,4 +1,4 @@
-package cn.edu.zust.util;
+package cn.edu.zust.covid.util;
 
 import java.sql.*;
 

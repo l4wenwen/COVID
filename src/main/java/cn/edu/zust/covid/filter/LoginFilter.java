@@ -1,7 +1,7 @@
-package cn.edu.zust.filter;
+package cn.edu.zust.covid.filter;
 
 
-import cn.edu.zust.vo.User;
+import cn.edu.zust.covid.vo.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

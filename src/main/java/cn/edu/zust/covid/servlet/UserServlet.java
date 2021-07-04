@@ -1,8 +1,8 @@
-package cn.edu.zust.servlet;
+package cn.edu.zust.covid.servlet;
 
-import cn.edu.zust.util.MD5Util;
-import cn.edu.zust.vo.User;
-import cn.edu.zust.vo.UserProfile;
+import cn.edu.zust.covid.util.MD5Util;
+import cn.edu.zust.covid.vo.User;
+import cn.edu.zust.covid.vo.UserProfile;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

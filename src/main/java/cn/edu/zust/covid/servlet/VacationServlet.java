@@ -1,17 +1,14 @@
-package cn.edu.zust.servlet;
+package cn.edu.zust.covid.servlet;
 
-import cn.edu.zust.vo.User;
-import cn.edu.zust.vo.Vacation;
+import cn.edu.zust.covid.vo.Vacation;
+import cn.edu.zust.covid.vo.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "vacationServlet", urlPatterns = "vacation/*")

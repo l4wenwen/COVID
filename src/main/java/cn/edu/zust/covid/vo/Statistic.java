@@ -1,4 +1,4 @@
-package cn.edu.zust.vo;
+package cn.edu.zust.covid.vo;
 
 
 public class Statistic {
