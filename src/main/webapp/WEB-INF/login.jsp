@@ -7,13 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh" dir="ltr">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>登陆</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login-style.css">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
 <div class="bg-img">
     <div class="content">
@@ -50,22 +52,21 @@
         </div>
     </div>
 </div>
-
 <script>
     const pass_field = document.querySelector('.pass-key');
     const showBtn = document.querySelector('.show');
-    showBtn.addEventListener('click', function(){
-        if(pass_field.type === "password"){
+    showBtn.addEventListener('click', function () {
+        if (pass_field.type === "password") {
             pass_field.type = "text";
             showBtn.textContent = "隐藏";
             showBtn.style.color = "#3498db";
-        }else{
+        } else {
             pass_field.type = "password";
             showBtn.textContent = "显示";
             showBtn.style.color = "#222";
         }
     });
 </script>
-
 </body>
+
 </html>

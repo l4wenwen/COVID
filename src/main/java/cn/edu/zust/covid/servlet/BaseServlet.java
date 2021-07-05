@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 public class BaseServlet extends HttpServlet {
     protected UserService userService;
     protected VacationService vacationService;
